@@ -550,6 +550,12 @@ h2 em { font-family: var(--script); color: var(--teal-light); font-weight: 400; 
 .kcr-hero__tagline { font-family: var(--script); font-size: clamp(16px, 2.5vw, 26px); color: var(--coconut); margin: 8px 0 0; text-shadow: 0 1px 10px rgba(0,0,0,.5); }
 .kcr-hero__left { display: flex; flex-direction: column; }
 
+/* ── Scroll Morph Showcase ── */
+.scroll-morph-section { width: 100%; background: var(--charcoal); overflow: hidden; }
+.scroll-morph-container { position: relative; width: 100%; height: 800px; overflow: hidden; }
+@media (max-width: 740px) { .scroll-morph-container { height: 600px; } }
+.scroll-morph-card:hover .scroll-morph-overlay { background: transparent !important; }
+
 /* ── Gallery Images Fix ── */
 #gallery img { display: block; width: 100%; height: 100%; object-fit: cover; }
 

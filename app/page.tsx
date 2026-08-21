@@ -6,6 +6,7 @@ import StreetFood from '@/components/StreetFood';
 import RiceDelights from '@/components/RiceDelights';
 import FoodShowcase from '@/components/FoodShowcase';
 import PlattersBanner from '@/components/PlattersBanner';
+import ScrollMorphHero from '@/components/ui/scroll-morph-hero';
 import Events from '@/components/Events';
 import Menu from '@/components/Menu';
 import Gallery from '@/components/Gallery';
@@ -25,6 +26,7 @@ export default function Home() {
       <RiceDelights />
       <FoodShowcase />
       <PlattersBanner />
+      <ScrollMorphHero />
       <Events />
       <Menu />
       <Gallery />
