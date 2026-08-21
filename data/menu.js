@@ -1,0 +1,197 @@
+export const menuCategories = [
+  {
+    key: 'starters',
+    label: 'Starters',
+    sections: [
+      {
+        title: 'Veg Starters',
+        items: [
+          { name: 'Paneer Tikka', price: '₹299' },
+          { name: 'Gobi Manchurian', price: '₹249' },
+          { name: 'Veg Spring Roll', price: '₹199' },
+          { name: 'Mushroom Pepper Fry', price: '₹269' },
+          { name: 'Paneer 65', price: '₹289' },
+          { name: 'Baby Corn Pepper Fry', price: '₹249' },
+          { name: 'Crispy Corn', price: '₹229' },
+          { name: 'Hara Bhara Kebab', price: '₹249' },
+        ],
+      },
+      {
+        title: 'Non Veg Starters',
+        items: [
+          { name: 'Chicken 65', price: '₹329', highlight: true },
+          { name: 'Chicken Tikka', price: '₹349' },
+          { name: 'Tandoori Chicken (Half)', price: '₹349' },
+          { name: 'Tandoori Chicken (Full)', price: '₹599' },
+          { name: 'Chilli Chicken', price: '₹329' },
+          { name: 'Chicken Lollipop', price: '₹329' },
+          { name: 'Fish Tikka', price: '₹399' },
+          { name: 'Fish Fry', price: '₹379', highlight: true },
+          { name: 'Prawns Fry', price: '₹449' },
+          { name: 'Prawns Pepper Fry', price: '₹449' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'maincourse',
+    label: 'Main Course',
+    sections: [
+      {
+        title: 'Non Veg Main Course',
+        items: [
+          { name: 'Butter Chicken', price: '₹369', highlight: true },
+          { name: 'Chicken Curry', price: '₹329' },
+          { name: 'Kadai Chicken', price: '₹349' },
+          { name: 'Chicken Masala', price: '₹349' },
+          { name: 'Chicken Do Pyaza', price: '₹349' },
+          { name: 'Mutton Curry', price: '₹449' },
+          { name: 'Mutton Rogan Josh', price: '₹469' },
+          { name: 'Egg Curry', price: '₹249' },
+          { name: 'Egg Masala', price: '₹249' },
+        ],
+      },
+      {
+        title: 'Veg Main Course',
+        items: [
+          { name: 'Paneer Butter Masala', price: '₹299', highlight: true },
+          { name: 'Kadai Paneer', price: '₹289' },
+          { name: 'Shahi Paneer', price: '₹299' },
+          { name: 'Palak Paneer', price: '₹279' },
+          { name: 'Malai Kofta', price: '₹289' },
+          { name: 'Dal Tadka', price: '₹219' },
+          { name: 'Dal Makhani', price: '₹249' },
+          { name: 'Mix Veg', price: '₹229' },
+          { name: 'Aloo Gobi', price: '₹219' },
+          { name: 'Chana Masala', price: '₹229' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'seafood',
+    label: 'Seafood',
+    sections: [
+      {
+        title: 'Seafood Specials',
+        items: [
+          { name: 'Kerala Fish Curry', price: '₹399', highlight: true },
+          { name: 'Fish Moilee', price: '₹419' },
+          { name: 'Meen Pollichathu', price: '₹449', highlight: true },
+          { name: 'Prawns Masala', price: '₹469' },
+          { name: 'Prawns Curry', price: '₹449' },
+          { name: 'Chemmeen Ularthiyathu', price: '₹469' },
+          { name: 'Fish Mappas', price: '₹429' },
+          { name: 'Karimeen Fry', price: '₹499' },
+          { name: 'Crab Roast', price: '₹549' },
+          { name: 'Squid Roast', price: '₹449' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'biryani',
+    label: 'Biryani',
+    sections: [
+      {
+        title: 'Kerala Biryani',
+        items: [
+          { name: 'Chicken Biryani', price: '₹329', highlight: true },
+          { name: 'Mutton Biryani', price: '₹449' },
+          { name: 'Egg Biryani', price: '₹269' },
+          { name: 'Prawns Biryani', price: '₹449' },
+          { name: 'Fish Biryani', price: '₹399' },
+          { name: 'Veg Biryani', price: '₹249' },
+          { name: 'Thalassery Chicken Biryani', price: '₹369', highlight: true },
+          { name: 'Kerala Chicken Dum Biryani', price: '₹359' },
+        ],
+      },
+      {
+        title: 'Kerala Traditional Cuisine',
+        items: [
+          { name: 'Appam (2 pcs)', price: '₹99' },
+          { name: 'Puttu & Kadala Curry', price: '₹179' },
+          { name: 'Idiyappam (3 pcs)', price: '₹119' },
+          { name: 'Kerala Parotta (2 pcs)', price: '₹99', highlight: true },
+          { name: 'Kizhi Parotta (Chicken)', price: '₹349' },
+          { name: 'Porotta & Beef Fry', price: '₹329' },
+          { name: 'Dosa', price: '₹129' },
+          { name: 'Masala Dosa', price: '₹149' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'chinese',
+    label: 'Chinese',
+    sections: [
+      {
+        title: 'Chinese Delight',
+        items: [
+          { name: 'Veg Fried Rice', price: '₹219' },
+          { name: 'Chicken Fried Rice', price: '₹269' },
+          { name: 'Egg Fried Rice', price: '₹239' },
+          { name: 'Veg Noodles', price: '₹219' },
+          { name: 'Chicken Noodles', price: '₹269' },
+          { name: 'Egg Noodles', price: '₹239' },
+          { name: 'Veg Manchurian', price: '₹229' },
+          { name: 'Chicken Manchurian', price: '₹289' },
+        ],
+      },
+      {
+        title: 'Chinese Curry',
+        items: [
+          { name: 'Schezwan Chicken', price: '₹309' },
+          { name: 'Dragon Chicken', price: '₹319' },
+          { name: 'Honey Chilli Chicken', price: '₹329' },
+          { name: 'Kung Pao Chicken', price: '₹319' },
+          { name: 'Chilli Paneer', price: '₹269' },
+          { name: 'Schezwan Paneer', price: '₹279' },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'breads',
+    label: 'Breads & More',
+    sections: [
+      {
+        title: 'Breads',
+        items: [
+          { name: 'Tandoori Roti', price: '₹49' },
+          { name: 'Butter Naan', price: '₹69' },
+          { name: 'Garlic Naan', price: '₹79' },
+          { name: 'Cheese Naan', price: '₹99' },
+          { name: 'Laccha Paratha', price: '₹69' },
+          { name: 'Missi Roti', price: '₹59' },
+          { name: 'Kulcha', price: '₹69' },
+          { name: 'Aloo Paratha', price: '₹89' },
+        ],
+      },
+      {
+        title: 'Veg Tikka / Chaap / Starters',
+        items: [
+          { name: 'Soya Chaap', price: '₹249' },
+          { name: 'Malai Chaap', price: '₹269' },
+          { name: 'Afghani Chaap', price: '₹279' },
+          { name: 'Paneer Tikka', price: '₹299' },
+          { name: 'Paneer Malai Tikka', price: '₹319' },
+          { name: 'Tandoori Mushroom', price: '₹269' },
+        ],
+      },
+      {
+        title: 'Ice Cream / Falooda / Shakes / Sweet',
+        items: [
+          { name: 'Gulab Jamun (2 pcs)', price: '₹99' },
+          { name: 'Rasmalai (2 pcs)', price: '₹129' },
+          { name: 'Payasam', price: '₹149', highlight: true },
+          { name: 'Ice Cream (Vanilla/Chocolate)', price: '₹99' },
+          { name: 'Falooda', price: '₹169' },
+          { name: 'Mango Shake', price: '₹149' },
+          { name: 'Cold Coffee', price: '₹129' },
+          { name: 'Buttermilk', price: '₹79' },
+        ],
+      },
+    ],
+  },
+];
