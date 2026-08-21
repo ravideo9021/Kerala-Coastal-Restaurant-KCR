@@ -550,6 +550,30 @@ h2 em { font-family: var(--script); color: var(--teal-light); font-weight: 400; 
 .kcr-hero__tagline { font-family: var(--script); font-size: clamp(16px, 2.5vw, 26px); color: var(--coconut); margin: 8px 0 0; text-shadow: 0 1px 10px rgba(0,0,0,.5); }
 .kcr-hero__left { display: flex; flex-direction: column; }
 
+/* ── Floating Food Decorations ── */
+.kcr-hero__floaters { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.kcr-hero__float { position: absolute; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(0,0,0,.4)); opacity: 0; animation: hero-entrance 1s ease-out forwards, hero-float 4s ease-in-out infinite; }
+@keyframes hero-entrance { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+
+.kcr-hero__float--dosa { width: clamp(90px, 18vw, 200px); top: 12%; right: 5%; animation-delay: 1.2s, 2.2s; animation-duration: 1s, 4.5s; }
+.kcr-hero__float--idli { width: clamp(70px, 12vw, 140px); top: 30%; left: 3%; animation-delay: 1.5s, 2.5s; animation-duration: 1s, 5s; }
+.kcr-hero__float--sambar { width: clamp(60px, 10vw, 120px); top: 8%; left: 30%; animation-delay: 1.8s, 2.8s; animation-duration: 1s, 4.2s; }
+.kcr-hero__float--vada { width: clamp(70px, 13vw, 150px); top: 22%; right: 25%; animation-delay: 2.1s, 3.1s; animation-duration: 1s, 4.8s; }
+
+@media (min-width: 1024px) {
+  .kcr-hero__float--dosa { width: 220px; top: 10%; right: 8%; }
+  .kcr-hero__float--idli { width: 150px; top: 25%; left: 5%; }
+  .kcr-hero__float--sambar { width: 130px; top: 5%; left: 35%; }
+  .kcr-hero__float--vada { width: 160px; top: 18%; right: 30%; }
+}
+@media (max-width: 740px) {
+  .kcr-hero__float--dosa { width: 80px; top: 15%; right: 3%; }
+  .kcr-hero__float--idli { width: 55px; top: 28%; left: 2%; }
+  .kcr-hero__float--sambar { width: 50px; top: 8%; left: 25%; }
+  .kcr-hero__float--vada { width: 60px; top: 20%; right: 20%; }
+}
+
 /* ── Scroll Morph Showcase ── */
 .scroll-morph-section { width: 100%; background: var(--charcoal); overflow: hidden; }
 .scroll-morph-container { position: relative; width: 100%; height: 800px; overflow: hidden; }
