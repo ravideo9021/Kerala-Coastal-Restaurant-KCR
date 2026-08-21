@@ -25,37 +25,50 @@ const satisfy = Satisfy({
 });
 
 export const metadata = {
-  title: 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Cuisine in Delhi',
+  title: {
+    default: 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Cuisine in Delhi',
+    template: '%s | KCR Delhi',
+  },
   description:
-    'Experience the authentic flavours of Kerala at KCR. Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies in the heart of Delhi.',
+    'Experience the authentic flavours of Kerala at KCR Delhi. Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies — from God\'s Own Country to Rajinder Nagar, New Delhi.',
   keywords: [
-    'Kerala restaurant',
+    'Kerala restaurant Delhi',
     'KCR Delhi',
     'Kerala Coastal Restaurant',
     'Kerala food Delhi',
-    'seafood Delhi',
-    'Kerala biryani',
+    'best seafood Delhi',
+    'Kerala biryani Delhi',
     'sadya Delhi',
-    'South Indian restaurant',
-    'coastal cuisine',
-    'appam',
-    'fish curry',
+    'South Indian restaurant Rajinder Nagar',
+    'coastal cuisine Delhi',
+    'appam Delhi',
+    'fish curry Delhi',
+    'Kerala restaurant near me',
+    'authentic Kerala food',
+    'Malabar cuisine',
+    'Kerala parotta',
   ],
+  metadataBase: new URL('https://kerala-coastal-restaurant.vercel.app'),
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Cuisine',
     description:
-      'Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies.',
+      'Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies in the heart of Delhi.',
     url: 'https://kerala-coastal-restaurant.vercel.app',
     siteName: 'Kerala Coastal Restaurant',
     locale: 'en_IN',
     type: 'website',
+    images: [{ url: '/media/restorent_front.png', width: 1200, height: 630, alt: 'Kerala Coastal Restaurant' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Kerala Coastal Restaurant (KCR)',
-    description: 'Authentic Kerala Cuisine in Delhi',
+    description: 'Authentic Kerala Cuisine in Delhi — Fresh seafood, sadyas & biryanis',
+    images: ['/media/restorent_front.png'],
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
+  verification: {},
+  category: 'restaurant',
 };
 
 export default function RootLayout({ children }) {

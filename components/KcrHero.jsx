@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { AppleHelloEnglishEffect } from '@/components/ui/apple-hello-effect';
 
 const SLIDES = [
   '/media/restorent_front.png',
@@ -80,7 +79,14 @@ export default function KcrHero() {
         <div className="kcr-hero__content">
           <div className="kcr-hero__grid">
             <div className="kcr-hero__left">
-              <AppleHelloEnglishEffect speed={1.1} className="kcr-hero__hello" />
+              <motion.p
+                className="kcr-hero__greeting"
+                initial={{ opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Swaagatham
+              </motion.p>
               <h1 className="kcr-hero__title">
                 <WordsPullUp text="Kerala" />
                 <br />
