@@ -15,7 +15,8 @@ const animateProps: TargetAndTransition = {
   opacity: 1,
 };
 
-type Props = React.ComponentProps<typeof motion.svg> & {
+type Props = Omit<React.ComponentProps<typeof motion.svg>, 'className'> & {
+  className?: string;
   speed?: number;
   onAnimationComplete?: () => void;
 };
