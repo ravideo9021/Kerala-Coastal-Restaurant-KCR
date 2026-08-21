@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 import { AppleHelloEnglishEffect } from '@/components/ui/apple-hello-effect';
 
 const SLIDES = [
@@ -15,32 +14,32 @@ const SLIDES = [
   '/media/Indian Chicken Curry Bowl.png',
 ];
 
-function WordsPullUp({ text, className = '', showAsterisk = false, style }) {
+
+function WordsPullUp({ text, className = '', style }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const words = text.split(' ');
 
   return (
-    <div ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', ...style }} className={className}>
+    <span ref={ref} style={{ display: 'inline-flex', flexWrap: 'wrap', ...style }} className={className}>
       {words.map((word, i) => {
         const isLast = i === words.length - 1;
         return (
           <motion.span
             key={i}
-            initial={{ y: 30, opacity: 0 }}
+            initial={{ y: 40, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             style={{
               display: 'inline-block',
-              position: 'relative',
-              marginRight: isLast ? 0 : '0.2em',
+              marginRight: isLast ? 0 : '0.18em',
             }}
           >
             {word}
           </motion.span>
         );
       })}
-    </div>
+    </span>
   );
 }
 
@@ -73,11 +72,21 @@ export default function KcrHero() {
 
         <div className="kcr-hero__content">
           <div className="kcr-hero__grid">
-            <div>
+            <div className="kcr-hero__left">
               <AppleHelloEnglishEffect speed={1.1} className="kcr-hero__hello" />
               <h1 className="kcr-hero__title">
-                <WordsPullUp text="KCR" />
+                <WordsPullUp text="Kerala" />
+                <br />
+                <WordsPullUp text="Coastal" style={{ animationDelay: '0.2s' }} />
               </h1>
+              <motion.p
+                className="kcr-hero__tagline"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Authentic Kerala Cuisine in Delhi
+              </motion.p>
             </div>
 
             <div className="kcr-hero__right">
@@ -87,9 +96,8 @@ export default function KcrHero() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                Kerala Coastal Restaurant brings the authentic flavours of
-                coastal South India to Delhi — fresh seafood, traditional
-                sadyas, Kerala biryanis and recipes passed through generations.
+                Fresh seafood, traditional sadyas, Kerala biryanis and recipes
+                passed through generations — from God&apos;s Own Country to your table.
               </motion.p>
 
               <motion.div
