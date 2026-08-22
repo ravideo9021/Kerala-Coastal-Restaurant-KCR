@@ -1,29 +1,7 @@
 'use client';
 
 import { AnimatedText } from '@/components/ui/animated-text';
-
-const SERVICES = [
-  {
-    icon: '🎂',
-    title: 'Birthday Parties',
-    desc: 'Celebrate with a custom Kerala feast — decorated setup, personalised menu, and warm hospitality for your special day.',
-  },
-  {
-    icon: '👯',
-    title: 'Kitty Parties',
-    desc: 'Perfect for your monthly get-togethers — special group menus, refreshments, and a cozy ambiance to catch up with friends.',
-  },
-  {
-    icon: '🏢',
-    title: 'Corporate Events',
-    desc: 'Impress your team and clients — curated multi-course meals, meeting-friendly setups, and bulk order options.',
-  },
-  {
-    icon: '🍽️',
-    title: 'Catering Service',
-    desc: 'Authentic Kerala catering at your doorstep — weddings, house parties, festive gatherings with banana leaf service.',
-  },
-];
+import FeatureCarousel from '@/components/ui/feature-carousel';
 
 export default function Events() {
   return (
@@ -54,15 +32,7 @@ export default function Events() {
           </div>
         </div>
 
-        <div className="events-grid">
-          {SERVICES.map((s, i) => (
-            <div key={s.title} className="event-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <span className="event-card__icon">{s.icon}</span>
-              <h3 className="event-card__title">{s.title}</h3>
-              <p className="event-card__desc">{s.desc}</p>
-            </div>
-          ))}
-        </div>
+        <FeatureCarousel />
 
         <div className="events-cta reveal">
           <p>Planning an event? Let us make it memorable.</p>
