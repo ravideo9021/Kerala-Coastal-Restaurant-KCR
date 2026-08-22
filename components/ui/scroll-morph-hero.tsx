@@ -217,14 +217,13 @@ export default function ScrollMorphHero() {
   }, []);
 
   const scatterPositions = useMemo(() => {
-    return IMAGES.map(() => ({
-      x: (Math.random() - 0.5) * 1500,
-      y: (Math.random() - 0.5) * 1000,
-      rotation: (Math.random() - 0.5) * 180,
+    return IMAGES.map((_, i) => ({
+      x: ((((i * 7 + 3) % 13) / 13) - 0.5) * 1500,
+      y: ((((i * 11 + 5) % 13) / 13) - 0.5) * 1000,
+      rotation: ((((i * 5 + 2) % 13) / 13) - 0.5) * 180,
       scale: 0.6,
       opacity: 0,
     }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [morphValue, setMorphValue] = useState(0);
