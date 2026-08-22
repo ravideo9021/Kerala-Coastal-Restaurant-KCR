@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useMemo, useState, useCallback, forwardRef } from "react";
+import React, { useRef, useMemo, forwardRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const GALLERY_IMAGES = [
@@ -20,14 +20,13 @@ const GALLERY_IMAGES = [
   "/media/restorent_inside.jpg",
 ];
 
-function ImageCard({ src, onLoad }: { src: string; onLoad?: () => void }) {
+function ImageCard({ src }: { src: string }) {
   return (
     <div className="parallax-gallery__card">
       <img
         src={src}
         alt="Gallery"
         loading="lazy"
-        onLoad={onLoad}
         className="parallax-gallery__img"
       />
     </div>
@@ -35,20 +34,7 @@ function ImageCard({ src, onLoad }: { src: string; onLoad?: () => void }) {
 }
 
 const StickyScrollGallery = forwardRef<HTMLElement>((_, ref) => {
-  const scrollWrapperRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isReady, setIsReady] = useState(false);
-  const loadedCountRef = useRef(0);
-
-  const handleItemLoad = useCallback(() => {
-    loadedCountRef.current += 1;
-    if (!isReady && loadedCountRef.current >= 1) setIsReady(true);
-  }, [isReady]);
-
-  useEffect(() => {
-    const t = setTimeout(() => setIsReady(true), 1200);
-    return () => clearTimeout(t);
-  }, []);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const colMedia = useMemo(() => {
     const col1Base = GALLERY_IMAGES.filter((_, i) => i % 4 === 0);
@@ -64,8 +50,7 @@ const StickyScrollGallery = forwardRef<HTMLElement>((_, ref) => {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    container: scrollWrapperRef,
+    target: sectionRef,
     offset: ["start start", "end end"],
   });
 
@@ -94,71 +79,69 @@ const StickyScrollGallery = forwardRef<HTMLElement>((_, ref) => {
 
   return (
     <section ref={ref} id="gallery">
-      <div ref={scrollWrapperRef} className="parallax-gallery__wrapper">
-        <div ref={containerRef} className="parallax-gallery__track">
-          <div className="parallax-gallery__sticky">
+      <div ref={sectionRef} className="parallax-gallery__track">
+        <div className="parallax-gallery__sticky">
+          <motion.div
+            className="parallax-gallery__banner"
+            style={{
+              width: bannerWidth,
+              height: bannerHeight,
+              borderRadius: bannerRadius,
+              borderWidth: bannerBorderWidth,
+              borderColor: "#2c2738",
+              borderStyle: "solid",
+            }}
+          >
             <motion.div
-              className="parallax-gallery__banner"
-              style={{
-                width: bannerWidth,
-                height: bannerHeight,
-                borderRadius: bannerRadius,
-                borderWidth: bannerBorderWidth,
-                borderColor: "#2c2738",
-                borderStyle: "solid",
-              }}
+              className="parallax-gallery__title-overlay"
+              style={{ opacity: titleOpacity }}
             >
-              <motion.div
-                className="parallax-gallery__title-overlay"
-                style={{ opacity: titleOpacity }}
-              >
-                <p className="eyebrow">Gallery</p>
-                <h2 style={{ fontSize: "clamp(42px,6vw,80px)", lineHeight: 1.1, fontWeight: 600, letterSpacing: "-1px", margin: 0 }}>
-                  A Feast for<br />the Eyes
-                </h2>
-                <p style={{ fontFamily: "var(--script)", color: "var(--teal-light)", fontSize: "clamp(18px,2.5vw,28px)", marginTop: 8 }}>
-                  Scroll to explore
-                </p>
-              </motion.div>
-
-              <div className="parallax-gallery__viewport">
-                <div className="parallax-gallery__shadow-h" />
-                <div className="parallax-gallery__shadow-v" />
-
-                <motion.div
-                  className="parallax-gallery__grid"
-                  style={{
-                    rotateX,
-                    rotateY,
-                    rotateZ,
-                    z: translateZ,
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <motion.div style={{ y: yCol1 }} className="parallax-gallery__col">
-                    {colMedia.col1.map((src, i) => (
-                      <ImageCard key={`c1-${i}`} src={src} onLoad={handleItemLoad} />
-                    ))}
-                  </motion.div>
-                  <motion.div style={{ y: yCol2 }} className="parallax-gallery__col">
-                    {colMedia.col2.map((src, i) => (
-                      <ImageCard key={`c2-${i}`} src={src} onLoad={handleItemLoad} />
-                    ))}
-                  </motion.div>
-                  <motion.div style={{ y: yCol3 }} className="parallax-gallery__col">
-                    {colMedia.col3.map((src, i) => (
-                      <ImageCard key={`c3-${i}`} src={src} onLoad={handleItemLoad} />
-                    ))}
-                  </motion.div>
-                  <motion.div style={{ y: yCol4 }} className="parallax-gallery__col">
-                    {colMedia.col4.map((src, i) => (
-                      <ImageCard key={`c4-${i}`} src={src} onLoad={handleItemLoad} />
-                    ))}
-                  </motion.div>
-                </motion.div>
-              </div>
+              <p className="eyebrow">Gallery</p>
+              <h2 style={{ fontSize: "clamp(42px,6vw,80px)", lineHeight: 1.1, fontWeight: 600, letterSpacing: "-1px", margin: 0 }}>
+                A Feast for<br />the Eyes
+              </h2>
+              <p style={{ fontFamily: "var(--script)", color: "var(--teal-light)", fontSize: "clamp(18px,2.5vw,28px)", marginTop: 8 }}>
+                Scroll to explore
+              </p>
             </motion.div>
-          </div>
+
+            <div className="parallax-gallery__viewport">
+              <div className="parallax-gallery__shadow-h" />
+              <div className="parallax-gallery__shadow-v" />
+
+              <motion.div
+                className="parallax-gallery__grid"
+                style={{
+                  rotateX,
+                  rotateY,
+                  rotateZ,
+                  z: translateZ,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <motion.div style={{ y: yCol1 }} className="parallax-gallery__col">
+                  {colMedia.col1.map((src, i) => (
+                    <ImageCard key={`c1-${i}`} src={src} />
+                  ))}
+                </motion.div>
+                <motion.div style={{ y: yCol2 }} className="parallax-gallery__col">
+                  {colMedia.col2.map((src, i) => (
+                    <ImageCard key={`c2-${i}`} src={src} />
+                  ))}
+                </motion.div>
+                <motion.div style={{ y: yCol3 }} className="parallax-gallery__col">
+                  {colMedia.col3.map((src, i) => (
+                    <ImageCard key={`c3-${i}`} src={src} />
+                  ))}
+                </motion.div>
+                <motion.div style={{ y: yCol4 }} className="parallax-gallery__col">
+                  {colMedia.col4.map((src, i) => (
+                    <ImageCard key={`c4-${i}`} src={src} />
+                  ))}
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -69,13 +69,6 @@ export default function KcrHero() {
         <div className="kcr-hero__noise" />
         <div className="kcr-hero__gradient" />
 
-        <div className="kcr-hero__floaters">
-          <img src="/media/dosa_decoration.png" alt="" className="kcr-hero__float kcr-hero__float--dosa" />
-          <img src="/media/idli_decoration.png" alt="" className="kcr-hero__float kcr-hero__float--idli" />
-          <img src="/media/samber_decoration.png" alt="" className="kcr-hero__float kcr-hero__float--sambar" />
-          <img src="/media/vada_decoration.png" alt="" className="kcr-hero__float kcr-hero__float--vada" />
-        </div>
-
         <div className="kcr-hero__content">
           <div className="kcr-hero__grid">
             <div className="kcr-hero__left">

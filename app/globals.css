@@ -271,8 +271,7 @@ h2 em { font-family: var(--script); color: var(--teal-light); font-weight: 400; 
 .menu-list li.highlight span { font-weight: 700; }
 
 /* GALLERY — 3D Parallax */
-.parallax-gallery__wrapper { width: 100%; height: 100vh; overflow-y: auto; overflow-x: hidden; background: #050505; }
-.parallax-gallery__track { position: relative; width: 100%; height: 600vh; background: #050505; color: #fff; }
+.parallax-gallery__track { position: relative; width: 100%; height: 400vh; background: #050505; color: #fff; }
 .parallax-gallery__sticky { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 .parallax-gallery__banner { position: relative; background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; max-width: 1920px; margin: 0 auto; will-change: transform; backface-visibility: hidden; }
 .parallax-gallery__title-overlay { position: absolute; z-index: 30; text-align: center; padding: 0 32px; pointer-events: none; }
@@ -561,29 +560,6 @@ h2 em { font-family: var(--script); color: var(--teal-light); font-weight: 400; 
 .kcr-hero__tagline { font-family: var(--script); font-size: clamp(16px, 2.5vw, 26px); color: var(--coconut); margin: 8px 0 0; text-shadow: 0 1px 10px rgba(0,0,0,.5); }
 .kcr-hero__left { display: flex; flex-direction: column; }
 
-/* ── Floating Food Decorations ── */
-.kcr-hero__floaters { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
-.kcr-hero__float { position: absolute; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(0,0,0,.4)); opacity: 0; animation: hero-entrance 1s ease-out forwards, hero-float 4s ease-in-out infinite; }
-@keyframes hero-entrance { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
-
-.kcr-hero__float--dosa { width: clamp(70px, 14vw, 160px); bottom: 28%; right: 2%; animation-delay: 1.2s, 2.2s; animation-duration: 1s, 4.5s; }
-.kcr-hero__float--idli { width: clamp(55px, 10vw, 110px); bottom: 38%; left: 2%; animation-delay: 1.5s, 2.5s; animation-duration: 1s, 5s; }
-.kcr-hero__float--sambar { width: clamp(50px, 9vw, 100px); bottom: 48%; right: 18%; animation-delay: 1.8s, 2.8s; animation-duration: 1s, 4.2s; }
-.kcr-hero__float--vada { width: clamp(55px, 10vw, 110px); bottom: 22%; left: 22%; animation-delay: 2.1s, 3.1s; animation-duration: 1s, 4.8s; }
-
-@media (min-width: 1024px) {
-  .kcr-hero__float--dosa { width: 150px; bottom: 18%; right: 5%; }
-  .kcr-hero__float--idli { width: 110px; bottom: 30%; left: 8%; }
-  .kcr-hero__float--sambar { width: 100px; bottom: 42%; right: 22%; }
-  .kcr-hero__float--vada { width: 120px; bottom: 12%; left: 28%; }
-}
-@media (max-width: 740px) {
-  .kcr-hero__float--dosa { width: 65px; bottom: 30%; right: 2%; }
-  .kcr-hero__float--idli { width: 45px; bottom: 42%; left: 1%; }
-  .kcr-hero__float--sambar { width: 40px; bottom: 50%; right: 15%; }
-  .kcr-hero__float--vada { width: 50px; bottom: 24%; left: 18%; }
-}
 
 /* ── Scroll Morph Showcase ── */
 .scroll-morph-section { width: 100%; background: var(--charcoal); overflow: hidden; }
