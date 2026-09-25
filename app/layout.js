@@ -9,6 +9,7 @@ import MobileActionBar from '@/components/MobileActionBar';
 import { SITE_URL, site } from '@/data/site';
 import { openingHoursSpecification } from '@/lib/hours';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Self-hosted, subsetted brand fonts (see assets/fonts/README.md): one small
 // file per family, including the rupee sign.
@@ -140,6 +141,7 @@ export default function RootLayout({ children }) {
         <MobileActionBar />
         <ScrollEffects />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
