@@ -2914,11 +2914,13 @@ h2 em {
   color: var(--muted);
 }
 
-/* minmax(0, 1fr) lets the columns shrink below the natural width of a date
-   picker or a long <select> option, so the boxes never overlap. */
+/* minmax(0, …) lets the columns shrink below the natural width of a date
+   picker or a long <select> option, so the boxes never overlap. The date gets
+   the room it needs: when a native date field is too narrow (bigger phone
+   text, for example), browsers scroll it and the day disappears. */
 .enquiry-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 1fr);
   gap: 16px;
 }
 
@@ -4609,7 +4611,7 @@ h2 em {
   }
 
   .field--occasion,
-  .field--name {
+  .field--date {
     grid-column: 1 / -1;
   }
 
