@@ -1,79 +1,44 @@
-import Picture from './Picture';
-import DietMark from './DietMark';
-import MovingBorderCard from './MovingBorderCard';
-import BreathingHeading from './BreathingHeading';
-import { getItem, priceFrom } from '@/data/menu';
+import DishCard from './DishCard';
 
-const DISHES = [
-  {
-    slug: 'kizhi-parotta',
-    image: 'kizhi-parotta',
-    alt: 'Kizhi parotta: a parcel of parotta and chicken masala in a charred banana leaf',
-    name: 'Kizhi Parotta',
-    tag: 'Kerala street classic',
-    description: 'Flaky parotta and chicken masala tied up in a banana leaf and roasted, so every layer soaks up the spice.',
-    color: 'var(--teal-light)',
-  },
-  {
-    slug: 'kerala-chicken-dum-biryani',
-    image: 'kerala-chicken-biryani',
-    alt: 'Kerala chicken biryani with lime and fried onions',
-    name: 'Kerala Chicken Biryani',
-    tag: 'Slow-cooked on dum',
-    description: 'Chicken and rice layered with whole spices and fried onions, sealed and slow-cooked: fragrant rather than fiery.',
-    color: 'var(--coconut)',
-  },
-  {
-    slug: 'chilli-chicken',
-    image: 'chilli-chicken',
-    alt: 'Glossy chilli chicken with scallions and green chillies',
-    name: 'Chilli Chicken',
-    tag: 'Wok-tossed',
-    description: 'Crisp chicken tossed hot with green chillies, scallions and our house spice blend.',
-    color: 'var(--teal-light)',
-  },
-];
+const SIZES = '(max-width: 740px) 78vw, (max-width: 1040px) 45vw, 380px';
 
 export default function Signatures() {
   return (
-    <section id="signatures" className="signatures" aria-labelledby="signatures-title">
-      <div className="section-head">
-        <p className="eyebrow reveal">Our signatures</p>
-        <div className="reveal">
-          <BreathingHeading
-            id="signatures-title"
-            lines={[
-              { text: 'Coastal', size: 'md', step: 0.2 },
-              { text: 'Classics', size: 'md', step: 0.2 },
-            ]}
-            tagline="Handcrafted with love"
+    <section className="signatures section" id="signatures" aria-labelledby="signatures-title">
+      <div className="container">
+        <header className="section-head reveal">
+          <p className="script">From our Kerala kitchen</p>
+          <h2 id="signatures-title">Coastal classics</h2>
+        </header>
+        <div className="dish-grid dish-grid--3">
+          <DishCard
+            slug="kizhi-parotta"
+            image="kizhi-parcel"
+            alt="Kizhi parotta: parotta and chicken masala in an opened banana-leaf parcel"
+            name="Kizhi Parotta"
+            tag="Must try"
+            description="Flaky parotta and chicken masala tied up in a banana leaf and roasted, so every layer soaks up the spice."
+            sizes={SIZES}
+          />
+          <DishCard
+            slug="kerala-chicken-dum-biryani"
+            image="kerala-chicken-biryani-cutout"
+            alt="Kerala chicken biryani on a brass plate with lime and mint"
+            name="Kerala Chicken Biryani"
+            tag="Slow-cooked"
+            description="Chicken and rice layered with whole spices and fried onions, then sealed and cooked on dum: fragrant rather than fiery."
+            sizes={SIZES}
+          />
+          <DishCard
+            slug="fish-fry"
+            image="chilli-fish-cutout"
+            alt="Crisp fried fish with curry leaves and red peppers"
+            name="Kerala Fish Fry"
+            tag="From the coast"
+            description="Fish rubbed with chilli, pepper and curry leaves and fried until the edges crisp. Order it with rice or parotta."
+            sizes={SIZES}
           />
         </div>
-      </div>
-      <div className="sig-grid">
-        {DISHES.map((d, i) => {
-          const item = getItem(d.slug);
-          return (
-            <div key={d.slug} className="reveal">
-              <MovingBorderCard radius={14} duration={3.5 + i * 0.8} color={d.color} glow={110}>
-                <article className="sig-card" data-tilt="">
-                  <div className="sig-img">
-                    <Picture name={d.image} alt={d.alt} sizes="(max-width: 740px) 92vw, (max-width: 1040px) 46vw, 380px" />
-                  </div>
-                  <div className="sig-body">
-                    <div className="sig-meta">
-                      <DietMark diet={item.diet} size={16} />
-                      <span className="sig-tag">{d.tag}</span>
-                    </div>
-                    <h3>{d.name}</h3>
-                    <p>{d.description}</p>
-                    <p className="sig-price">{priceFrom(item)}</p>
-                  </div>
-                </article>
-              </MovingBorderCard>
-            </div>
-          );
-        })}
       </div>
     </section>
   );

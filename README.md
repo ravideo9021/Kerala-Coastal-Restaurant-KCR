@@ -10,6 +10,41 @@ and pre-optimised AVIF/WebP images.
 
 **Live:** [kerala-coastal-restaurant.vercel.app](https://kerala-coastal-restaurant.vercel.app)
 
+## What's new in version 2.1: the redesign
+
+- **Header** with the phone number and an **Order online** button, like the
+  Flavours of Punjab site; a full-screen menu on phones.
+- **Hero**: four signature dishes (Kerala chicken biryani, kizhi parotta, fish
+  fry, chilli paneer) as cut-outs over a blurred photo of the same dish, with
+  a slowly turning ring of text around the plate, steam, and big Swiggy /
+  Zomato buttons. Prev / next / pause controls.
+- **New type**: Anek Malayalam (a Kerala type family, condensed) for headings,
+  Yellowtail for script accents, Manrope for text. The Malayalam greeting
+  (സ്വാഗതം) is set in the same family.
+- **About**: the Kerala Coastal mural from the dining room in a gold frame,
+  a kizhi parotta and a turning "KCR" seal, instead of the big circle behind
+  the photo.
+- **Dish cards** with cut-outs (no photo backgrounds), a kasavu stripe and the
+  price from the menu file; a teal **biryani band** with every biryani and its
+  price.
+- **Order online**: order cards for WhatsApp / call, Swiggy and Zomato over an
+  interactive **spice lattice** (the "matrix" effect from the old Flavours site,
+  now with spice names; move the mouse, click or tap). It can be paused and
+  stays still for "reduce motion".
+- **Seafood** and **banana-leaf meal** banners with rotating text rings.
+- **Menu** as a cream card with a gold **kasavu** border, like a Kerala mundu.
+  Categories with one section now fill both columns.
+- **Event form** fixed: the boxes no longer overlap on any screen size.
+- Kept: the 3D gallery, the culinary journey, the events carousel, the order
+  button animation, the ticker and the teal swirl. The "breathing" headings and
+  moving borders are replaced by calmer static headings.
+- New share image (WhatsApp / Instagram previews) and app icons in the new
+  style.
+
+Lighthouse (mobile, simulated slow 4G): **Performance 90–91**, LCP 3.4 s,
+Accessibility 100, Best practices 100, SEO 100; page weight about 0.5 MB.
+Desktop: 100 / 100 / 100 / 100.
+
 ## What's in version 2
 
 **Speed (same look, same animations)**
@@ -75,7 +110,8 @@ veg/non-veg marks from `data/menu.js`, so a price change is made once.
 1. Put the image in `assets/photos/` named like `appam-stew.webp` (PNG/JPG work
    too).
 2. Add it to the `IMAGES` list in `scripts/optimize-images.mjs` (`photo`, or
-   `cutout` for transparent PNGs).
+   `cutout` for transparent PNGs; hero backdrops use
+   `{ preset: 'backdrop', source: 'dish-photo' }` to make a blurred copy).
 3. Run `npm run images`: it writes the responsive files to `public/media/` and
    updates `data/images.json`. Unchanged photos are skipped.
 4. Use it: `<Picture name="appam-stew" alt="…" sizes="…" />`.

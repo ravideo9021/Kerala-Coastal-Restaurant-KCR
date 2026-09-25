@@ -2,7 +2,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Briefcase, Cake, Heart, PartyPopper, Phone, Send, UtensilsCrossed } from 'lucide-react';
 import Picture from './Picture';
-import BreathingHeading from './BreathingHeading';
 import { site, whatsappLink } from '@/data/site';
 import { useReducedMotion } from '@/lib/useMediaQuery';
 
@@ -92,7 +91,7 @@ function EnquiryForm({ occasion, setOccasion }) {
       <h3 id={`${id}-title`}>Plan your event</h3>
       <p className="enquiry-intro">Tell us a little about it. This opens WhatsApp with your details filled in.</p>
       <div className="enquiry-grid">
-        <label className="field">
+        <label className="field field--occasion">
           <span>Occasion</span>
           <select name="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
             {SERVICES.map((s) => (
@@ -103,15 +102,15 @@ function EnquiryForm({ occasion, setOccasion }) {
             <option value="other">Something else</option>
           </select>
         </label>
-        <label className="field">
+        <label className="field field--date">
           <span>Date</span>
           <input type="date" name="date" required onFocus={(e) => (e.currentTarget.min = todayISO())} />
         </label>
-        <label className="field">
+        <label className="field field--guests">
           <span>Guests</span>
           <input type="number" name="guests" min="1" max="2000" inputMode="numeric" placeholder="e.g. 25" required />
         </label>
-        <label className="field">
+        <label className="field field--name">
           <span>Your name</span>
           <input type="text" name="name" autoComplete="name" placeholder="Optional" />
         </label>
@@ -171,21 +170,16 @@ export default function Events() {
   };
 
   return (
-    <section className="events-section" id="events" aria-labelledby="events-title">
-      <div className="events-inner">
-        <div className="section-head">
-          <p className="eyebrow reveal">Events &amp; catering</p>
-          <div className="reveal">
-            <BreathingHeading
-              id="events-title"
-              lines={[
-                { text: 'We Host', size: 'md', step: 0.15 },
-                { text: 'Your Joy', size: 'md', step: 0.15 },
-              ]}
-              tagline="Celebrations & more"
-            />
-          </div>
-        </div>
+    <section className="events section" id="events" aria-labelledby="events-title">
+      <div className="container">
+        <header className="section-head reveal">
+          <p className="script">Events &amp; catering</p>
+          <h2 id="events-title">We host your celebrations</h2>
+          <p className="lead">
+            Birthdays, kitty parties, office lunches and festival feasts: at our place or yours, with a menu planned
+            around your guests.
+          </p>
+        </header>
 
         <div
           ref={rootRef}

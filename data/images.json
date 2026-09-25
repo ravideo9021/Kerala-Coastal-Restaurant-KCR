@@ -1,4 +1,52 @@
 {
+  "hero-bg-biryani": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "63023dc4",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdLwFWAAY49pxBB9f/F4UhQAD+z2seEv5p47w8KcXmnCPCyNHyMiogth9LKClCji2zhhvIo+SckPtqChLQHJw4SWxSWZRD48QDGkJ2fnP/FoLvM7Uw9Vc04EXxEHUzdRRrmwFSRZEpwHKx2oGY8EZL4cXyHpu+2K+/I8HxwAAA"
+  },
+  "hero-bg-kizhi": {
+    "w": 1024,
+    "h": 1536,
+    "hash": "858260d6",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAADwBQCdASoUAB4APu1mq0+ppSOiMBgIATAdiWwAnSDmalkKjyu9pu56dyZU0s1azpHJC9vSFenWwAD+5CrPyBNt+uEPvPGjY6lw9AK1bBBAedPrtTdeQRpZq+xkRN4GyQdCMyBq2hWuCQU4RiLIVYIWnmedYpT5akLBH20Aj1TpE2NwiFnXmrNcfSM9XqmNxnZ5JsP+llgd51XMbXoOwmLhm3z5deCdNeluLcHo89MMeBW8fnJTwNYFdR6pi1kvYhtQup3cfpFnzLslkz6OKKTgQoVmS1HJQD0TDBFxVxs34AAA"
+  },
+  "hero-bg-fish": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "88ff58c9",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAQBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdAYv02/EgbpYkJslmYAD+5fCXKPRKydrHguZ0gCMP1EJHsEfwnOognfg/zAkSP15XqI1ba7R7mzx4P+ImoCfPrOKaugfa21O2PBtChcHmJLpMOXYZUgEz+4kFAVe8TnmeXc5ENQyNRJURuamk1jO8iIhNZ8U1S609jcNHF2EL6W6wH+QbwAA="
+  },
+  "hero-bg-paneer": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "ef5df1b7",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdMoAltxYmpjnCkWj3/SPUAAD+5O4h7kedaZvx86IcgSdk8ydwRhmsqBkI5DJ37ywL+FFbbOS14f5BIr8kmfQ8ry2oI9cXI3X4k1YRrNewhoqig4RHxBakhq+QwaBDtkdid2Owp3CKR80vAAAA"
+  },
   "storefront": {
     "w": 1448,
     "h": 1086,
@@ -13,19 +61,6 @@
     ],
     "alpha": false,
     "blur": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAADQAwCdASoUAA8APu1iqU2ppaQiMAgBMB2JZQCdABVMJNeD7D1Cn4AAzJqNUkyLYmgoWYhYymb0DBAy1YmAc4fXCDG7Ymz3sCaX9RObTByhlrufzR6kM8j0IUMPSeZc/R+HatgJm8OAMi4vSt6KT5w8CDELDchv+KJNQVDl66dXYnoGz3+Uxw4QoAA="
-  },
-  "storefront-portrait": {
-    "w": 815,
-    "h": 1086,
-    "hash": "dd5c08b3",
-    "widths": [
-      320,
-      480,
-      640,
-      815
-    ],
-    "alpha": false,
-    "blur": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAABQBQCdASoUABsAPu1sq1EppaOiqAqpMB2JQACiA93Q8XGXfHHkFVEuAoqZ6GyCpQgvbJAA/gUPL9qGWSuullSddjirfiv9CRTIxW9ImjmB3VY5p+2wvc0yDVjZE2k8hDn1dke2C344Jsn6b137BEiS9BHL1/SPbI+Cy/+kU3MSISWNtwVCPjSW77nmYMilrlkrlKGO217evt+g44AbKY88nq67J6bx0v3/oMlWgVf0cq0+tzE8pFnaWCztcfUPBCWvG7F4oAAkQRzEvBpkOAAA"
   },
   "interior": {
     "w": 2400,
@@ -42,6 +77,20 @@
     ],
     "alpha": false,
     "blur": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JagCdMoCGAZ3grSB32v+vdkS5GXwA+pdO56F2//Hg+SX+gxmdolksBo5mj4NjQwTuStqz21uwNvHvMx/YotlktkRgJGSFNst7+lTCuJODp4v083o6qocnzmU7efIgBHFGJ9hlahaXVKZ3V8Q7Agu+p3ilxD5m4GnzljcPquwAAA=="
+  },
+  "interior-mural": {
+    "w": 1050,
+    "h": 1312,
+    "hash": "73d3de6b",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1050
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRg4BAABXRUJQVlA4IAIBAACQBgCdASoUABkAPu1sqlEppaOiqAqpMB2JbAC7M1ju0X+z8B4AYzGbpp3SFY/A9AQTsFDtVNo8V7wECDIAAP59h7DXyYlkVslZtwmGwDDiGHCLM/+CjtLjPEe95wIXV3cAfpr8LDMyCiLmg17jIkMUR3pP2Dl0F8pjQrBVm1dCApYI4mda7C+LaigfB0uJIaYCUgzyG0SwTvOuOgFeczDte+2YsfdaCNL/OGcpWRtK22f7xLXNvpj3rJCT29aEqJU1XqiMJkPXzem9lKWzDR+w+nOq7ABH/O6ZikUZSyPZAa8zGI9+tkNHO2+cAK5r+IwkGzYVPlqJq47taSHVbdWjgAA="
   },
   "banana-leaf-meal": {
     "w": 765,
@@ -83,19 +132,6 @@
     ],
     "alpha": false,
     "blur": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAADwBQCdASoUAB4APu1mq0+ppSOiMBgIATAdiWwAnSDmalkKjyu9pu56dyZU0s1azpHJC9vSFenWwAD+5CrPyBNt+uEPvPGjY6lw9AK1bBBAedPrtTdeQRpZq+xkRN4GyQdCMyBq2hWuCQU4RiLIVYIWnmedYpT5akLBH20Aj1TpE2NwiFnXmrNcfSM9XqmNxnZ5JsP+llgd51XMbXoOwmLhm3z5deCdNeluLcHo89MMeBW8fnJTwNYFdR6pi1kvYhtQup3cfpFnzLslkz6OKKTgQoVmS1HJQD0TDBFxVxs34AAA"
-  },
-  "kizhi-parcel": {
-    "w": 1536,
-    "h": 1024,
-    "hash": "6609aacb",
-    "widths": [
-      320,
-      480,
-      640,
-      960,
-      1280
-    ],
-    "alpha": true
   },
   "kerala-chicken-biryani": {
     "w": 1536,
@@ -244,5 +280,134 @@
     ],
     "alpha": false,
     "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdL1GUAAzJfg/N4EkiQEJpZ8AA/s9p8K4cTrIfuPMxdJkGYCl+ko4gOSrqo53NKcWivnN19JBX9zeVlm4VesZuGacZqNWVKPHP25Tb+Fj+piGjWWM3oG3ZvRpd/0RRBJuRWo41GPjy1K5mKlFEcmDek5J2D3hXAAAA"
+  },
+  "kizhi-parcel": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "6609aacb",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "kizhi-parotta-cutout": {
+    "w": 967,
+    "h": 1129,
+    "hash": "9ea7fd9c",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      967
+    ],
+    "alpha": true
+  },
+  "kerala-chicken-biryani-cutout": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "2813d452",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "chilli-fish-cutout": {
+    "w": 1326,
+    "h": 1043,
+    "hash": "eef2f526",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "chilli-paneer-cutout": {
+    "w": 1400,
+    "h": 993,
+    "hash": "89ba1d09",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "chilli-chicken-cutout": {
+    "w": 1089,
+    "h": 1001,
+    "hash": "db5815df",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1089
+    ],
+    "alpha": true
+  },
+  "chicken-curry-cutout": {
+    "w": 1376,
+    "h": 1076,
+    "hash": "da4e7be4",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "paneer-tikka-cutout": {
+    "w": 1378,
+    "h": 1041,
+    "hash": "bad13610",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "chicken-fried-rice-cutout": {
+    "w": 1081,
+    "h": 909,
+    "hash": "dcf2d0cb",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1081
+    ],
+    "alpha": true
+  },
+  "falooda-cutout": {
+    "w": 648,
+    "h": 1077,
+    "hash": "f667bbdc",
+    "widths": [
+      320,
+      480,
+      640,
+      648
+    ],
+    "alpha": true
   }
 }

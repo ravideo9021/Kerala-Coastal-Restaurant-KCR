@@ -8,8 +8,9 @@
  *   app/icon.svg, app/apple-icon.png, public/icon-192.png, public/icon-512.png,
  *   public/icon-maskable-512.png, app/opengraph-image.jpg (+ .alt.txt)
  *
- * The share image renders text with the brand fonts, so install Playfair
- * Display, DM Sans and Satisfy locally (Google Fonts) before re-running.
+ * The share image renders text with the brand fonts, so install Anek
+ * Malayalam (condensed ExtraBold), Manrope and Yellowtail locally (Google
+ * Fonts) before re-running.
  */
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -22,14 +23,16 @@ const GOLD = `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
   <stop offset="0" stop-color="#F7E7A6"/><stop offset=".5" stop-color="#E8C547"/><stop offset="1" stop-color="#B8912A"/>
 </linearGradient>`;
 
-// "KCR" in Playfair Display ExtraBold, converted to outlines (units: 1/1000 em,
-// baseline at y = 0) so the icon never depends on an installed font.
-const KCR_PATH = 'M714 -708V-689Q681 -681 642 -658Q603 -636 559 -586L374 -370L443 -464L680 -81Q694 -59 709 -45Q723 -31 747 -20V0Q708 -2 663 -2Q618 -3 579 -3Q557 -3 525 -2Q493 -2 444 0V-20Q488 -22 496 -31Q504 -40 489 -65L343 -305Q331 -326 322 -336Q312 -346 303 -350Q294 -355 279 -356V-376Q323 -378 360 -403Q397 -428 444 -483L491 -538Q531 -584 535 -617Q540 -650 518 -669Q497 -688 458 -689V-708Q484 -707 508 -706Q532 -706 557 -706Q583 -705 616 -705Q647 -705 671 -706Q695 -707 714 -708ZM358 -708V-688Q327 -687 311 -680Q295 -674 290 -656Q285 -639 285 -602V-106Q285 -70 290 -52Q296 -34 311 -28Q327 -22 358 -20V0Q330 -2 287 -2Q243 -3 199 -3Q148 -3 103 -2Q58 -2 31 0V-20Q62 -22 78 -28Q93 -34 99 -52Q104 -70 104 -106V-602Q104 -639 99 -656Q93 -674 78 -680Q62 -687 31 -688V-708Q58 -707 103 -706Q148 -705 199 -705Q243 -705 287 -706Q330 -707 358 -708Z M1119 -722Q1185 -722 1228 -702Q1270 -683 1303 -657Q1323 -642 1334 -654Q1344 -665 1348 -708H1371Q1369 -669 1368 -612Q1367 -555 1367 -462H1344Q1340 -509 1331 -544Q1323 -579 1307 -606Q1291 -633 1261 -654Q1238 -673 1210 -684Q1181 -694 1151 -694Q1096 -694 1058 -664Q1021 -633 998 -584Q976 -534 967 -474Q957 -413 957 -352Q957 -290 967 -230Q977 -169 999 -120Q1022 -71 1060 -41Q1098 -12 1153 -12Q1182 -12 1211 -22Q1239 -32 1262 -51Q1306 -81 1322 -130Q1337 -178 1344 -256H1367Q1367 -159 1368 -100Q1369 -40 1371 0H1348Q1344 -43 1335 -54Q1325 -65 1303 -51Q1266 -25 1225 -6Q1183 14 1118 14Q1009 14 927 -29Q844 -72 799 -153Q753 -234 753 -348Q753 -460 800 -544Q847 -628 930 -675Q1012 -722 1119 -722Z M1446 -708Q1473 -707 1518 -706Q1563 -705 1608 -705Q1657 -705 1703 -706Q1748 -707 1767 -707Q1865 -707 1928 -687Q1992 -667 2024 -629Q2056 -590 2056 -533Q2056 -497 2041 -463Q2027 -428 1992 -399Q1958 -370 1897 -353Q1837 -336 1745 -336H1649V-356H1735Q1790 -356 1818 -378Q1847 -401 1858 -438Q1868 -476 1868 -522Q1868 -601 1843 -644Q1818 -688 1758 -688Q1721 -688 1711 -671Q1700 -654 1700 -602V-106Q1700 -70 1705 -52Q1711 -34 1726 -28Q1742 -22 1773 -20V0Q1745 -2 1702 -2Q1658 -3 1614 -3Q1563 -3 1518 -2Q1473 -2 1446 0V-20Q1477 -22 1493 -28Q1508 -34 1514 -52Q1519 -70 1519 -106V-602Q1519 -639 1514 -656Q1508 -674 1493 -680Q1477 -687 1446 -688ZM1645 -353Q1684 -352 1716 -349Q1748 -346 1773 -344Q1799 -341 1818 -340Q1917 -334 1965 -302Q2014 -271 2027 -209L2048 -105Q2057 -67 2067 -51Q2077 -36 2095 -37Q2106 -37 2114 -41Q2122 -46 2130 -55L2144 -42Q2115 -11 2081 1Q2047 14 2002 14Q1943 14 1905 -9Q1868 -32 1858 -94L1841 -194Q1835 -235 1825 -267Q1816 -299 1800 -318Q1784 -336 1755 -336H1647Z';
-const KCR_BOX = { x: 31, y: -722, w: 2113, h: 736 };
+// "KCR" in Anek Malayalam ExtraBold Condensed (the site's display face),
+// converted to outlines (units: 1/1000 em, baseline at y = 0) so the icon
+// never depends on an installed font.
+const KCR_PATH =
+  'M450 0H286L202 -282H188V-372H202L282 -639H444L336 -325V-360ZM193 0H37V-639H193Z M695 11Q602 11 558 -46Q516 -102 516 -214V-428Q516 -538 560 -594Q605 -650 694 -650Q718 -650 738 -646Q757 -642 772 -636Q786 -630 796 -622L805 -482Q792 -491 777 -497Q762 -503 741 -503Q704 -503 690 -480Q676 -456 676 -414V-224Q676 -184 692 -161Q707 -138 746 -138Q767 -138 782 -144Q798 -150 809 -158L800 -16Q790 -10 774 -4Q758 3 738 7Q718 11 695 11Z M1284 0H1128L1122 -152Q1122 -172 1116 -185Q1111 -198 1100 -204Q1090 -210 1074 -210H1014V-339H1078Q1102 -339 1113 -354Q1124 -369 1124 -406V-438Q1124 -476 1114 -490Q1104 -506 1078 -506H1012V-639H1088Q1188 -639 1234 -594Q1280 -550 1280 -466V-447Q1280 -384 1250 -350Q1220 -318 1160 -316V-293L1128 -314Q1188 -310 1218 -291Q1247 -272 1258 -238Q1269 -204 1272 -156ZM1056 0H902V-639H1056V-300L1056 -235Z';
+const KCR_BOX = { x: 37, y: -650, w: 1247.5, h: 661 };
 
 // Gold "KCR" over a double gold kasavu stripe, on the site's dark green-black.
 const monogram = ({ radius = 14, scale = 1 } = {}) => {
-  const inner = 52 * scale;
+  const inner = 44 * scale;
   const s = inner / KCR_BOX.w;
   const textH = KCR_BOX.h * s;
   const x = (64 - inner) / 2 - KCR_BOX.x * s;
@@ -60,46 +63,51 @@ async function icons() {
 async function shareImage() {
   const W = 1200;
   const H = 630;
-  const background = await sharp(out('assets/photos/interior.webp'))
-    .resize(W, H, { fit: 'cover', position: 'right' })
-    .modulate({ brightness: 0.6 })
+  // Same look as the hero: the dish, cut out, over a blurred photo of itself.
+  const background = await sharp(out('assets/photos/kerala-chicken-biryani.webp'))
+    .resize(W, H, { fit: 'cover' })
+    .blur(18)
+    .modulate({ brightness: 0.55 })
     .toBuffer();
-  const dish = await sharp(out('assets/photos/kizhi-parotta.webp'))
-    .resize(420, 420, { fit: 'cover' })
-    .composite([
-      {
-        input: Buffer.from('<svg width="420" height="420"><circle cx="210" cy="210" r="210" fill="#fff"/></svg>'),
-        blend: 'dest-in',
-      },
-    ])
-    .png()
-    .toBuffer();
+  const dish = await sharp(out('assets/photos/kerala-chicken-biryani-cutout.webp')).resize({ width: 560 }).png().toBuffer();
+  const { height: dishH } = await sharp(dish).metadata();
+  const cx = 890;
+  const cy = 315;
   const shade = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs><linearGradient id="s" x1="0" x2="1"><stop offset="0" stop-color="#060D0A" stop-opacity=".97"/><stop offset=".55" stop-color="#060D0A" stop-opacity=".82"/><stop offset="1" stop-color="#060D0A" stop-opacity=".35"/></linearGradient></defs>
+    <defs>
+      <linearGradient id="s" x1="0" x2="1"><stop offset="0" stop-color="#060D0A" stop-opacity=".96"/><stop offset=".5" stop-color="#060D0A" stop-opacity=".78"/><stop offset="1" stop-color="#060D0A" stop-opacity=".25"/></linearGradient>
+      <radialGradient id="glow"><stop offset="0" stop-color="#F0894A" stop-opacity=".38"/><stop offset=".5" stop-color="#E8C547" stop-opacity=".12"/><stop offset="1" stop-color="#E8C547" stop-opacity="0"/></radialGradient>
+      <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+    </defs>
     <rect width="${W}" height="${H}" fill="url(#s)"/>
-    <circle cx="${W - 250}" cy="315" r="222" fill="none" stroke="#E8C547" stroke-opacity=".55" stroke-width="3"/>
+    <circle cx="${cx}" cy="${cy}" r="250" fill="url(#glow)"/>
+    <circle cx="${cx}" cy="${cy}" r="272" fill="none" stroke="#E8C547" stroke-opacity=".45" stroke-width="2.5" stroke-dasharray="2 12" stroke-linecap="round"/>
+    <ellipse cx="${cx}" cy="${cy + dishH / 2 - 10}" rx="230" ry="30" fill="#000" fill-opacity=".55" filter="url(#blur)"/>
   </svg>`);
   const text = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
-    <defs>${GOLD}</defs>
-    <text x="74" y="150" font-family="Satisfy" font-size="56" fill="#E8C547">Swaagatham</text>
-    <text x="66" y="282" font-family="Playfair Display" font-weight="800" font-size="138" letter-spacing="-5" fill="#F0EDE3">Kerala</text>
-    <text x="66" y="408" font-family="Playfair Display" font-weight="800" font-size="138" letter-spacing="-5" fill="#F0EDE3">Coastal</text>
-    <rect x="74" y="438" width="300" height="2" fill="#E8C547"/>
-    <rect x="74" y="445" width="300" height="5" fill="#14A085"/>
-    <text x="74" y="500" font-family="DM Sans" font-weight="500" font-size="30" fill="#F0EDE3">Authentic Kerala food · Rajinder Nagar, Delhi</text>
-    <text x="74" y="548" font-family="DM Sans" font-weight="700" font-size="22" letter-spacing="4" fill="#8FAE9F">SEAFOOD · BIRYANI · PAROTTA · APPAM</text>
+    <defs>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9B23C"/><stop offset=".48" stop-color="#F7E39A"/><stop offset="1" stop-color="#D9B23C"/></linearGradient>
+      <linearGradient id="kasavu" x1="0" x2="1"><stop offset="0" stop-color="#A8842A"/><stop offset=".3" stop-color="#F0D67A"/><stop offset=".6" stop-color="#C9A43A"/><stop offset="1" stop-color="#A8842A"/></linearGradient>
+    </defs>
+    <text x="72" y="118" font-family="Anek Malayalam" font-weight="800" font-stretch="condensed" font-size="23" letter-spacing="4.6" fill="#F2D874">KERALA RESTAURANT · RAJINDER NAGAR, NEW DELHI</text>
+    <text x="64" y="292" font-family="Anek Malayalam" font-weight="800" font-stretch="condensed" font-size="210" letter-spacing="6" fill="url(#gold)">KERALA</text>
+    <text x="250" y="382" font-family="Yellowtail" font-size="118" fill="#F0EDE3">Coastal</text>
+    <rect x="74" y="418" width="340" height="7" fill="url(#kasavu)"/>
+    <rect x="74" y="430" width="340" height="2" fill="url(#kasavu)"/>
+    <text x="72" y="490" font-family="Anek Malayalam" font-weight="800" font-stretch="condensed" font-size="30" letter-spacing="5" fill="#F0EDE3">SEAFOOD · BIRYANI · PAROTTA · APPAM</text>
+    <text x="74" y="545" font-family="Manrope" font-weight="600" font-size="26" fill="#8FAE9F">Order on Swiggy &amp; Zomato · +91 76330 19866</text>
   </svg>`);
   await sharp(background)
     .composite([
       { input: shade },
-      { input: dish, left: W - 460, top: 105 },
+      { input: dish, left: cx - 280, top: Math.round(cy - dishH / 2) },
       { input: text },
     ])
     .jpeg({ quality: 84, mozjpeg: true })
     .toFile(out('app/opengraph-image.jpg'));
   await writeFile(
     out('app/opengraph-image.alt.txt'),
-    'Kerala Coastal Restaurant: the name over our dining room, with kizhi parotta in a banana leaf',
+    'Kerala Coastal Restaurant, Rajinder Nagar: Kerala chicken biryani on a brass plate',
   );
 }
 

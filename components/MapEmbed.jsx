@@ -35,7 +35,7 @@ export default function MapEmbed() {
       <div className="map-facade-overlay">
         <p className="map-facade-hint">Look for our black Kerala Coastal signboard, opposite the BSES office</p>
         <div className="map-facade-actions">
-          <button type="button" className="btn btn-coconut" onClick={() => setLoaded(true)}>
+          <button type="button" className="btn btn-gold" onClick={() => setLoaded(true)}>
             <MapPin size={18} aria-hidden="true" /> Show map
           </button>
           <a className="btn btn-outline" href={site.maps.place} target="_blank" rel="noopener noreferrer">

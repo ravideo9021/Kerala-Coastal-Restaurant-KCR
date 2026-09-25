@@ -4,11 +4,10 @@ import { useEffect } from 'react';
 /**
  * Small page-wide helpers that don't belong to one section:
  *
- * - Looping decorations (moving borders, breathing headings, spinning rings,
- *   tickers) marked `data-play-when-visible` only animate while on screen.
+ * - Looping decorations marked `data-play-when-visible` (the tickers) only
+ *   animate while on screen.
  * - Section reveals are pure CSS (scroll-driven animations). Browsers without
  *   them get the same fade-up from an IntersectionObserver instead.
- * - Signature cards tilt towards the mouse on desktop.
  */
 export default function ScrollEffects() {
   useEffect(() => {
@@ -38,31 +37,6 @@ export default function ScrollEffects() {
       );
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
       cleanups.push(() => revealObserver.disconnect());
-    }
-
-    // 3D tilt on the signature cards (mouse, wide screens).
-    if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1041px)').matches) {
-      const cards = document.querySelectorAll('[data-tilt]');
-      const tilt = (e) => {
-        const el = e.currentTarget;
-        const rect = el.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        el.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
-      };
-      const reset = (e) => {
-        e.currentTarget.style.transform = '';
-      };
-      cards.forEach((c) => {
-        c.addEventListener('pointermove', tilt);
-        c.addEventListener('pointerleave', reset);
-      });
-      cleanups.push(() =>
-        cards.forEach((c) => {
-          c.removeEventListener('pointermove', tilt);
-          c.removeEventListener('pointerleave', reset);
-        }),
-      );
     }
 
     return () => cleanups.forEach((fn) => fn());

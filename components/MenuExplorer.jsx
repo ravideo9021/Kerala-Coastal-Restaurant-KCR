@@ -233,7 +233,7 @@ export default function MenuExplorer({ mode = 'tabs', headingLevel = 3 }) {
         categories.map((category) => (
           <section key={category.id} id={mode === 'full' ? category.id : undefined} className="menu-category" aria-label={category.label}>
             {showAll && <CategoryHeading className="menu-category-title">{category.label}</CategoryHeading>}
-            <div className="menu-columns">
+            <div className={`menu-columns${category.sections.length === 1 ? ' menu-columns--flow' : ''}`}>
               {category.sections.map((section) => (
                 <Section key={section.title} section={section} Heading={SectionHeading} />
               ))}

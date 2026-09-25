@@ -10,7 +10,7 @@ export default function NotFound() {
         <h1>This dish isn&apos;t on the menu</h1>
         <p className="lead">The page you were looking for doesn&apos;t exist or has moved.</p>
         <div className="not-found-actions">
-          <Link className="btn btn-coconut" href="/">
+          <Link className="btn btn-gold" href="/">
             Back to home
           </Link>
           <Link className="btn btn-outline" href="/menu">

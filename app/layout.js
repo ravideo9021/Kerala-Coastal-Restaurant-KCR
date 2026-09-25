@@ -10,29 +10,28 @@ import { SITE_URL, site } from '@/data/site';
 import { openingHoursSpecification } from '@/lib/hours';
 
 // Self-hosted, subsetted brand fonts (see assets/fonts/README.md): one small
-// variable file per family, including the rupee sign.
+// file per family, including the rupee sign.
 const display = localFont({
-  src: '../assets/fonts/PlayfairDisplay-var.woff2',
-  weight: '400 900',
+  src: '../assets/fonts/AnekMalayalam-display.woff2',
+  weight: '600 800',
   display: 'swap',
-  variable: '--font-playfair',
-  fallback: ['Georgia', 'Times New Roman', 'serif'],
+  variable: '--font-anek',
+  fallback: ['Arial Narrow', 'Arial', 'sans-serif'],
 });
 
 const body = localFont({
-  src: '../assets/fonts/DMSans-var.woff2',
+  src: '../assets/fonts/Manrope-var.woff2',
   weight: '400 800',
   display: 'swap',
-  variable: '--font-dmsans',
+  variable: '--font-manrope',
   fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
 });
 
 const script = localFont({
-  src: '../assets/fonts/Satisfy-400.woff2',
+  src: '../assets/fonts/Yellowtail-400.woff2',
   weight: '400',
   display: 'swap',
-  preload: false,
-  variable: '--font-satisfy',
+  variable: '--font-yellowtail',
   fallback: ['Brush Script MT', 'cursive'],
 });
 

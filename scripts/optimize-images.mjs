@@ -29,11 +29,15 @@ const MANIFEST = path.join(ROOT, 'data/images.json');
 // spice texture and herb detail survive, and the files are 20-50x smaller than
 // the original PNGs. `alpha` is the WebP transparency quality.
 const PRESETS = {
-  // Photos are used everywhere from full-screen hero slides down to the small
+  // Photos are used everywhere from full-screen sections down to the small
   // gallery and journey cards, so they get a wide range of widths.
   photo: { widths: [320, 480, 640, 960, 1280, 1600, 1920], avif: 52, webp: 70 },
   // Transparent food cut-outs.
   cutout: { widths: [320, 480, 640, 960, 1280], avif: 60, webp: 78, alpha: 80 },
+  // Hero backdrops: a dish photo, pre-blurred (sigma for a 1280px-wide image,
+  // scaled with width) so the cut-out in front of it pops. Blurred files are
+  // tiny, and a 1280px blur stretched to a 4K screen looks the same.
+  backdrop: { widths: [640, 960, 1280], avif: 46, webp: 62, blur: 14 },
 };
 
 // Large variants are seen at a lower pixel density (full-screen hero slides,
@@ -46,19 +50,23 @@ const QUALITY_STEP = [
 const qualityFor = (base, width) => base + (QUALITY_STEP.find(([min]) => width >= min)?.[1] ?? 0);
 const PIPELINE_VERSION = 2;
 
+// slug: preset, or { preset, source } to derive an image from another master.
 const IMAGES = {
+  // Hero backdrops, made from the dish photos
+  'hero-bg-biryani': { preset: 'backdrop', source: 'kerala-chicken-biryani' },
+  'hero-bg-kizhi': { preset: 'backdrop', source: 'kizhi-parotta' },
+  'hero-bg-fish': { preset: 'backdrop', source: 'chilli-fish' },
+  'hero-bg-paneer': { preset: 'backdrop', source: 'chilli-paneer' },
+
   // The restaurant
   storefront: 'photo',
-  // Portrait crop of the storefront for phones (hero slide one): phones only
-  // ever show this part of the wide photo, so they download half the bytes.
-  'storefront-portrait': 'photo',
   interior: 'photo',
+  'interior-mural': 'photo',
   'banana-leaf-meal': 'photo',
   'kitty-party': 'photo',
 
-  // Dishes
+  // Dish photos
   'kizhi-parotta': 'photo',
-  'kizhi-parcel': 'cutout',
   'kerala-chicken-biryani': 'photo',
   'chilli-chicken': 'photo',
   'chilli-fish': 'photo',
@@ -69,6 +77,18 @@ const IMAGES = {
   'chicken-fried-rice': 'photo',
   falooda: 'photo',
   'gobi-matar': 'photo',
+
+  // Dish cut-outs (transparent PNG/WebP masters)
+  'kizhi-parcel': 'cutout',
+  'kizhi-parotta-cutout': 'cutout',
+  'kerala-chicken-biryani-cutout': 'cutout',
+  'chilli-fish-cutout': 'cutout',
+  'chilli-paneer-cutout': 'cutout',
+  'chilli-chicken-cutout': 'cutout',
+  'chicken-curry-cutout': 'cutout',
+  'paneer-tikka-cutout': 'cutout',
+  'chicken-fried-rice-cutout': 'cutout',
+  'falooda-cutout': 'cutout',
 };
 
 const GENERATED = /^[a-z0-9-]+\.[0-9a-f]{8}-\d+\.(avif|webp)$/;
@@ -84,9 +104,10 @@ async function build() {
   const keep = new Set();
   const existing = new Set(await readdir(OUT_DIR));
 
-  for (const [slug, presetName] of Object.entries(IMAGES)) {
-    const file = sources.get(slug);
-    if (!file) throw new Error(`Missing master for "${slug}" in assets/photos/`);
+  for (const [slug, spec] of Object.entries(IMAGES)) {
+    const { preset: presetName, source = slug } = typeof spec === 'string' ? { preset: spec } : spec;
+    const file = sources.get(source);
+    if (!file) throw new Error(`Missing master for "${source}" in assets/photos/`);
     const preset = PRESETS[presetName];
     const input = await readFile(path.join(SRC_DIR, file));
     const meta = await sharp(input).metadata();
@@ -99,7 +120,8 @@ async function build() {
 
     // Never upscale: keep widths the master can actually fill, and always
     // include the master's own width if it is smaller than the largest preset.
-    let widths = preset.widths.filter((w) => w <= meta.width);
+    // (Blurred backdrops have no detail to lose, so they always get every width.)
+    let widths = preset.blur ? preset.widths : preset.widths.filter((w) => w <= meta.width);
     if (!widths.length || (widths.at(-1) < meta.width && meta.width < preset.widths.at(-1))) {
       widths = [...widths, meta.width];
     }
@@ -109,7 +131,8 @@ async function build() {
       keep.add(`${name}.avif`).add(`${name}.webp`);
       // Skip work when this exact master + preset was already encoded.
       if (existing.has(`${name}.avif`) && existing.has(`${name}.webp`)) continue;
-      const resized = sharp(input).resize({ width: w, withoutEnlargement: true });
+      let resized = sharp(input).resize({ width: w, withoutEnlargement: !preset.blur });
+      if (preset.blur) resized = resized.blur(Math.max(0.3, (preset.blur * w) / 1280));
       const base = path.join(OUT_DIR, name);
       await resized.clone().avif({ quality: qualityFor(preset.avif, w), effort: 4 }).toFile(`${base}.avif`);
       await resized
@@ -130,7 +153,7 @@ async function build() {
       entry.blur = `data:image/webp;base64,${tiny.toString('base64')}`;
     }
     manifest[slug] = entry;
-    console.log(`${slug.padEnd(24)} ${presetName.padEnd(8)} ${widths.join(', ')}`);
+    console.log(`${slug.padEnd(30)} ${presetName.padEnd(9)} ${widths.join(', ')}`);
   }
 
   // Remove variants that are no longer referenced.

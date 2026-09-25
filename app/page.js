@@ -5,17 +5,15 @@ import Ticker from '@/components/Ticker';
 import Favourites from '@/components/Favourites';
 import RiceDelights from '@/components/RiceDelights';
 import OrderOnline from '@/components/OrderOnline';
-import SeafoodShowcase from '@/components/SeafoodShowcase';
+import SeafoodBanner from '@/components/SeafoodBanner';
+import MenuSection from '@/components/MenuSection';
 import BananaLeafFeast from '@/components/BananaLeafFeast';
 import CulinaryJourney from '@/components/CulinaryJourney';
 import Events from '@/components/Events';
-import MenuSection from '@/components/MenuSection';
 import Gallery from '@/components/Gallery';
 import Reviews from '@/components/Reviews';
 import Visit from '@/components/Visit';
 import StayConnected from '@/components/StayConnected';
-
-const TICKER = ['Appam', 'Puttu', 'Biryani', 'Fish Curry', 'Parotta', 'Dosa', 'Payasam', 'Meen Pollichathu'];
 
 export default function Home() {
   return (
@@ -23,16 +21,21 @@ export default function Home() {
       <Hero />
       <About />
       <Signatures />
-      <Ticker items={TICKER} />
+      <Ticker
+        variant="dark"
+        items={['Appam', 'Puttu', 'Kerala Parotta', 'Fish Curry', 'Meen Pollichathu', 'Thalassery Biryani', 'Payasam']}
+      />
       <Favourites />
-      <Ticker items={TICKER} reverse />
       <RiceDelights />
       <OrderOnline />
-      <SeafoodShowcase />
+      <SeafoodBanner />
+      <MenuSection />
+      <Ticker
+        items={['Kizhi Parotta', 'Karimeen Fry', 'Chicken 65', 'Crab Roast', 'Idiyappam', 'Fish Moilee', 'Falooda']}
+      />
       <BananaLeafFeast />
       <CulinaryJourney />
       <Events />
-      <MenuSection />
       <Gallery />
       <Reviews />
       <Visit />
