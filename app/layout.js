@@ -8,6 +8,7 @@ import FloatingActions from '@/components/FloatingActions';
 import MobileActionBar from '@/components/MobileActionBar';
 import { SITE_URL, site } from '@/data/site';
 import { openingHoursSpecification } from '@/lib/hours';
+import { Analytics } from '@vercel/analytics/next';
 
 // Self-hosted, subsetted brand fonts (see assets/fonts/README.md): one small
 // file per family, including the rupee sign.
@@ -138,6 +139,7 @@ export default function RootLayout({ children }) {
         <FloatingActions />
         <MobileActionBar />
         <ScrollEffects />
+        <Analytics />
       </body>
     </html>
   );
