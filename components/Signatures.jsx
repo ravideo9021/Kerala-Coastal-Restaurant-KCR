@@ -1,82 +1,79 @@
-'use client';
-import { MovingBorderCard } from '@/components/ui/moving-border';
-import { AnimatedText } from '@/components/ui/animated-text';
+import Picture from './Picture';
+import DietMark from './DietMark';
+import MovingBorderCard from './MovingBorderCard';
+import BreathingHeading from './BreathingHeading';
+import { getItem, priceFrom } from '@/data/menu';
 
 const DISHES = [
   {
-    img: '/media/Charred Banana Leaf Kizhi Parotta.png',
-    tag: 'Chef Special',
+    slug: 'kizhi-parotta',
+    image: 'kizhi-parotta',
+    alt: 'Kizhi parotta: a parcel of parotta and chicken masala in a charred banana leaf',
     name: 'Kizhi Parotta',
-    desc: 'Charred banana leaf wrapped parotta with succulent chicken masala — a Kerala street legend.',
-    price: '₹349',
+    tag: 'Kerala street classic',
+    description: 'Flaky parotta and chicken masala tied up in a banana leaf and roasted, so every layer soaks up the spice.',
     color: 'var(--teal-light)',
   },
   {
-    img: '/media/Glossy Chili Chicken with Scallions.png',
-    tag: 'Bestseller',
-    name: 'Chilli Chicken',
-    desc: 'Glossy, wok-tossed chicken tossed with scallions, green chillies and our signature Kerala spice blend.',
-    price: '₹329',
+    slug: 'kerala-chicken-dum-biryani',
+    image: 'kerala-chicken-biryani',
+    alt: 'Kerala chicken biryani with lime and fried onions',
+    name: 'Kerala Chicken Biryani',
+    tag: 'Slow-cooked on dum',
+    description: 'Chicken and rice layered with whole spices and fried onions, sealed and slow-cooked: fragrant rather than fiery.',
     color: 'var(--coconut)',
   },
   {
-    img: '/media/Steaming Chicken Kizhi Parotta Parcel.png',
-    tag: 'Must Try',
-    name: 'Chicken Kizhi Parcel',
-    desc: 'Steaming hot chicken parcel wrapped in layers of flaky Kerala parotta — spiced to perfection.',
-    price: '₹349',
+    slug: 'chilli-chicken',
+    image: 'chilli-chicken',
+    alt: 'Glossy chilli chicken with scallions and green chillies',
+    name: 'Chilli Chicken',
+    tag: 'Wok-tossed',
+    description: 'Crisp chicken tossed hot with green chillies, scallions and our house spice blend.',
     color: 'var(--teal-light)',
   },
 ];
 
 export default function Signatures() {
   return (
-    <section id="signatures" className="signatures">
-      <div className="sig-header">
-        <p className="eyebrow reveal">Our Signatures</p>
+    <section id="signatures" className="signatures" aria-labelledby="signatures-title">
+      <div className="section-head">
+        <p className="eyebrow reveal">Our signatures</p>
         <div className="reveal">
-          <AnimatedText
-            text="Coastal"
-            fontSize={50}
-            minWeight={300}
-            maxWeight={900}
-            animationDuration={2.2}
-            delayMultiplier={0.2}
+          <BreathingHeading
+            id="signatures-title"
+            lines={[
+              { text: 'Coastal', size: 'md', step: 0.2 },
+              { text: 'Classics', size: 'md', step: 0.2 },
+            ]}
+            tagline="Handcrafted with love"
           />
-          <AnimatedText
-            text="Classics"
-            fontSize={50}
-            minWeight={300}
-            maxWeight={900}
-            animationDuration={2.2}
-            delayMultiplier={0.2}
-          />
-          <em style={{ display: 'block', textAlign: 'center', fontFamily: 'var(--font-script)', fontSize: '20px', color: 'var(--coconut)', marginTop: '8px' }}>Handcrafted with love</em>
         </div>
       </div>
       <div className="sig-grid">
-        {DISHES.map((d, i) => (
-          <div key={d.name} className="reveal" style={{ transitionDelay: `${i * 0.12}s` }}>
-            <MovingBorderCard
-              borderRadius="14px"
-              duration={3500 + i * 800}
-              borderColor={d.color}
-              glowSize={100}
-            >
-              <div className="sig-card">
-                <div className="sig-img">
-                  <img src={d.img} alt={d.name} />
-                </div>
-                <div className="sig-body">
-                  <span className="sig-tag">{d.tag}</span>
-                  <h3>{d.name}</h3>
-                  <p>{d.desc}</p>
-                  <span className="sig-price">{d.price}</span>
-                </div>
-              </div>
-            </MovingBorderCard>
-          </div>
-        ))}
+        {DISHES.map((d, i) => {
+          const item = getItem(d.slug);
+          return (
+            <div key={d.slug} className="reveal">
+              <MovingBorderCard radius={14} duration={3.5 + i * 0.8} color={d.color} glow={110}>
+                <article className="sig-card" data-tilt="">
+                  <div className="sig-img">
+                    <Picture name={d.image} alt={d.alt} sizes="(max-width: 740px) 92vw, (max-width: 1040px) 46vw, 380px" />
+                  </div>
+                  <div className="sig-body">
+                    <div className="sig-meta">
+                      <DietMark diet={item.diet} size={16} />
+                      <span className="sig-tag">{d.tag}</span>
+                    </div>
+                    <h3>{d.name}</h3>
+                    <p>{d.description}</p>
+                    <p className="sig-price">{priceFrom(item)}</p>
+                  </div>
+                </article>
+              </MovingBorderCard>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

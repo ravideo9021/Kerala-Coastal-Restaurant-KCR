@@ -1,0 +1,248 @@
+{
+  "storefront": {
+    "w": 1448,
+    "h": 1086,
+    "hash": "38747021",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1448
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAADQAwCdASoUAA8APu1iqU2ppaQiMAgBMB2JZQCdABVMJNeD7D1Cn4AAzJqNUkyLYmgoWYhYymb0DBAy1YmAc4fXCDG7Ymz3sCaX9RObTByhlrufzR6kM8j0IUMPSeZc/R+HatgJm8OAMi4vSt6KT5w8CDELDchv+KJNQVDl66dXYnoGz3+Uxw4QoAA="
+  },
+  "storefront-portrait": {
+    "w": 815,
+    "h": 1086,
+    "hash": "dd5c08b3",
+    "widths": [
+      320,
+      480,
+      640,
+      815
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAABQBQCdASoUABsAPu1sq1EppaOiqAqpMB2JQACiA93Q8XGXfHHkFVEuAoqZ6GyCpQgvbJAA/gUPL9qGWSuullSddjirfiv9CRTIxW9ImjmB3VY5p+2wvc0yDVjZE2k8hDn1dke2C344Jsn6b137BEiS9BHL1/SPbI+Cy/+kU3MSISWNtwVCPjSW77nmYMilrlkrlKGO217evt+g44AbKY88nq67J6bx0v3/oMlWgVf0cq0+tzE8pFnaWCztcfUPBCWvG7F4oAAkQRzEvBpkOAAA"
+  },
+  "interior": {
+    "w": 2400,
+    "h": 1800,
+    "hash": "f0916582",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1600,
+      1920
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoUAA8APu1iqU2ppaOiMAgBMB2JagCdMoCGAZ3grSB32v+vdkS5GXwA+pdO56F2//Hg+SX+gxmdolksBo5mj4NjQwTuStqz21uwNvHvMx/YotlktkRgJGSFNst7+lTCuJODp4v083o6qocnzmU7efIgBHFGJ9hlahaXVKZ3V8Q7Agu+p3ilxD5m4GnzljcPquwAAA=="
+  },
+  "banana-leaf-meal": {
+    "w": 765,
+    "h": 1020,
+    "hash": "c872777f",
+    "widths": [
+      320,
+      480,
+      640,
+      765
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRgwBAABXRUJQVlA4IAABAAAQBgCdASoUABsAPu1or1CppaQiqAqpMB2JbACdMt61AIFqgFPWFXFct8rDk1YFH1CdMDxnamJH9wAA/uj/QTA863dYghUzg/wfsikP3AhkEQGxf2spzOpOcyddRv1pEddbkXtej+gobKAD5WWcLYOspkrMcRZ5T1gID9atZPQZDDnsxg6huC+SyJOnsKFEhwYHGXebPJ8RC0zYXDncOPmvRpBbEM3Vmg+1JomcNwV3v8nGgeaYITJ0vHV9CtL95nMzncnayDV1sTHCQQ8zbqv8786OcJ0Om3vojBE+chXu6raH3Af4tTvTjlxwBeG9BaupMWz/N04lmBDO8BGaAAAA"
+  },
+  "kitty-party": {
+    "w": 1060,
+    "h": 1484,
+    "hash": "6bac6650",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1060
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAAAQBQCdASoUABwAPu1kqk+ppSOiMBgIATAdiWgAnQHcz3/64S+wlzAR0UAwnbZkZX4gAP7uJCSNCQA5kNwWGP0//YJQKlZK66jAJRnYMvXCINfqpAVw20N0hHZJhKw3SfzeI/PkdAEIuWaMDjeIJhKXVGAO7DjEdaZtYv41h9+ydWe8VOJqNdUkanoqenQiLi/k59EsZPemWlFSuJjBoapHdJTAGNfMbM64RzjMeGy85NYfetngB3X8nFUlKx8kI4e/V6vZ4FC0vgfBVOyNuXNfNnyktvv/k6REsUbHlLgAAA=="
+  },
+  "kizhi-parotta": {
+    "w": 1024,
+    "h": 1536,
+    "hash": "4bb92929",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1024
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAADwBQCdASoUAB4APu1mq0+ppSOiMBgIATAdiWwAnSDmalkKjyu9pu56dyZU0s1azpHJC9vSFenWwAD+5CrPyBNt+uEPvPGjY6lw9AK1bBBAedPrtTdeQRpZq+xkRN4GyQdCMyBq2hWuCQU4RiLIVYIWnmedYpT5akLBH20Aj1TpE2NwiFnXmrNcfSM9XqmNxnZ5JsP+llgd51XMbXoOwmLhm3z5deCdNeluLcHo89MMeBW8fnJTwNYFdR6pi1kvYhtQup3cfpFnzLslkz6OKKTgQoVmS1HJQD0TDBFxVxs34AAA"
+  },
+  "kizhi-parcel": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "6609aacb",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280
+    ],
+    "alpha": true
+  },
+  "kerala-chicken-biryani": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "70d5b39f",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdLwFWAAY49pxBB9f/F4UhQAD+z2seEv5p47w8KcXmnCPCyNHyMiogth9LKClCji2zhhvIo+SckPtqChLQHJw4SWxSWZRD48QDGkJ2fnP/FoLvM7Uw9Vc04EXxEHUzdRRrmwFSRZEpwHKx2oGY8EZL4cXyHpu+2K+/I8HxwAAA"
+  },
+  "chilli-chicken": {
+    "w": 1122,
+    "h": 1402,
+    "hash": "2dddbe2f",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1122
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACwBACdASoUABkAPu1sq1EppaOiqAqpMB2JbACdMzOHQBTnXp1dLTjVM3JM0KaEAP7w7LHD+v0X0o7zgT/0ODwm66ADQ1i64Vq9zSoqis29wnPE5+/V4daPoS4yGdloSmnBUlABypSIqt5EbYtMvW8uOeYvZQ0xdEeAyWYTWFE0JwifbWXTHXQUwpAncB353Ff8xksCJVfCT/4mWxU8HVwYDlju2EK3VKKJh6u1SggH0xZTt1ZAQaXEBlunBFl3pZqQV7Jr47gAAA=="
+  },
+  "chilli-fish": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "55a7c1d5",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1402
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAQBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdAYv02/EgbpYkJslmYAD+5fCXKPRKydrHguZ0gCMP1EJHsEfwnOognfg/zAkSP15XqI1ba7R7mzx4P+ImoCfPrOKaugfa21O2PBtChcHmJLpMOXYZUgEz+4kFAVe8TnmeXc5ENQyNRJURuamk1jO8iIhNZ8U1S609jcNHF2EL6W6wH+QbwAA="
+  },
+  "chicken-curry": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "dc556077",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1402
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAADQBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoR3IsChACBuFWzxmAjrxiu4MAD+6f5+XZezNelSBM5kt+Psf6wK95orWK/UhSD570hN6giFpf4aKlbtjijMnUu0vr5e+b4pd9ibSlrLTfjoy8Vbt3Dmdjkt4C28brY41rHtvy+GhG19704cKZRQOw7R1OsMmkPPvn0yjIpHfxer7RAnR/T2O0t7R/cfUjIkn73sz6ObIAA="
+  },
+  "naan-basket": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "13eee4f9",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1402
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoRwHvVD0DocmUUCCNuzp2ezIAAA/uQR/8tD+lfTpRlOI+MdTdFcxz9UFKIOXXBvPIqz45/1dpM5zybRFH3BySTZiVWrsYBIw4EkmDiAFdMfa2VQDrhiJcSzf/3tI5hJ8T/lCq5qPZT+9KN3pQtCykFveyH08ly3mabQtiB7MRoQAA=="
+  },
+  "paneer-tikka": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "6e011552",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1402
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBACdASoUABAAPu1iqU2ppaOiMAgBMB2JbACdMoJYAAvehLxH84vfF3PgSClAAP7jMUhkkDHIAjX6ITK7GqT28byB58jQF6BGA+C2S4GDowjYsu9BLrGgNrQWBnARy/aPDo7YzKliJd/Ofo3H//yyE+EEnvU0vbFQBWvY1phxC0PB0PUBKW7vpHvSnKvsuP6NPJoA"
+  },
+  "chilli-paneer": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "219d1344",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABwBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdMoAltxYmpjnCkWj3/SPUAAD+5O4h7kedaZvx86IcgSdk8ydwRhmsqBkI5DJ37ywL+FFbbOS14f5BIr8kmfQ8ry2oI9cXI3X4k1YRrNewhoqig4RHxBakhq+QwaBDtkdid2Owp3CKR80vAAAA"
+  },
+  "chicken-fried-rice": {
+    "w": 1086,
+    "h": 1448,
+    "hash": "989d4b1b",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1086
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAACQBQCdASoUABsAPu1osFAppaSiqAqpMB2JbACsKIAVv0Zc3qJ8nVmJXBZrMIlmGRv5LyfZgAD+5DzHRe7AqMiCzGHYabp6dnv6rk1F6tje3BWO3CYAZm10O0rLW1n/zzh72JJM6WztzuMyAsdC30TiP1Owz0QHCjCQhgqVqYIsm+ZFNKqiYD7R4Ir6dx1YUKd191MDaZUrg2rdrjSo1PmbrNQRsyoHLb4OR6ArmgZBgiSYJV7TfhiZtme+EW3mP/cl/veoib1GjiD/Q0SuPTTkzcTsAIzu1J3vafc9gAA="
+  },
+  "falooda": {
+    "w": 1402,
+    "h": 1122,
+    "hash": "048dbdfa",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1402
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAACQAwCdASoUABAAPu1iqU2ppaOiMAgBMB2JQAAIS+SCVmwIOZN4AP7ytLpbyY9Cz/t2tRhuPqi1lQuavR8ZI1Bn90uHhcBHfRZd57Tn6QXi5LpCPx7nKksZS7z/mBWeN7NmXlAA"
+  },
+  "gobi-matar": {
+    "w": 1536,
+    "h": 1024,
+    "hash": "99a1113d",
+    "widths": [
+      320,
+      480,
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "alpha": false,
+    "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACQBACdASoUAA0APu1iqU2ppaOiMAgBMB2JbACdL1GUAAzJfg/N4EkiQEJpZ8AA/s9p8K4cTrIfuPMxdJkGYCl+ko4gOSrqo53NKcWivnN19JBX9zeVlm4VesZuGacZqNWVKPHP25Tb+Fj+piGjWWM3oG3ZvRpd/0RRBJuRWo41GPjy1K5mKlFEcmDek5J2D3hXAAAA"
+  }
+}

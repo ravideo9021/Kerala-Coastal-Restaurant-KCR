@@ -1,0 +1,108 @@
+#!/usr/bin/env node
+/**
+ * One-off generator for the favicon / app icons and the social share image.
+ *
+ *   node scripts/make-brand-assets.mjs
+ *
+ * Outputs (committed, so builds don't need to run this):
+ *   app/icon.svg, app/apple-icon.png, public/icon-192.png, public/icon-512.png,
+ *   public/icon-maskable-512.png, app/opengraph-image.jpg (+ .alt.txt)
+ *
+ * The share image renders text with the brand fonts, so install Playfair
+ * Display, DM Sans and Satisfy locally (Google Fonts) before re-running.
+ */
+import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import sharp from 'sharp';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const out = (p) => path.join(ROOT, p);
+
+const GOLD = `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#F7E7A6"/><stop offset=".5" stop-color="#E8C547"/><stop offset="1" stop-color="#B8912A"/>
+</linearGradient>`;
+
+// "KCR" in Playfair Display ExtraBold, converted to outlines (units: 1/1000 em,
+// baseline at y = 0) so the icon never depends on an installed font.
+const KCR_PATH = 'M714 -708V-689Q681 -681 642 -658Q603 -636 559 -586L374 -370L443 -464L680 -81Q694 -59 709 -45Q723 -31 747 -20V0Q708 -2 663 -2Q618 -3 579 -3Q557 -3 525 -2Q493 -2 444 0V-20Q488 -22 496 -31Q504 -40 489 -65L343 -305Q331 -326 322 -336Q312 -346 303 -350Q294 -355 279 -356V-376Q323 -378 360 -403Q397 -428 444 -483L491 -538Q531 -584 535 -617Q540 -650 518 -669Q497 -688 458 -689V-708Q484 -707 508 -706Q532 -706 557 -706Q583 -705 616 -705Q647 -705 671 -706Q695 -707 714 -708ZM358 -708V-688Q327 -687 311 -680Q295 -674 290 -656Q285 -639 285 -602V-106Q285 -70 290 -52Q296 -34 311 -28Q327 -22 358 -20V0Q330 -2 287 -2Q243 -3 199 -3Q148 -3 103 -2Q58 -2 31 0V-20Q62 -22 78 -28Q93 -34 99 -52Q104 -70 104 -106V-602Q104 -639 99 -656Q93 -674 78 -680Q62 -687 31 -688V-708Q58 -707 103 -706Q148 -705 199 -705Q243 -705 287 -706Q330 -707 358 -708Z M1119 -722Q1185 -722 1228 -702Q1270 -683 1303 -657Q1323 -642 1334 -654Q1344 -665 1348 -708H1371Q1369 -669 1368 -612Q1367 -555 1367 -462H1344Q1340 -509 1331 -544Q1323 -579 1307 -606Q1291 -633 1261 -654Q1238 -673 1210 -684Q1181 -694 1151 -694Q1096 -694 1058 -664Q1021 -633 998 -584Q976 -534 967 -474Q957 -413 957 -352Q957 -290 967 -230Q977 -169 999 -120Q1022 -71 1060 -41Q1098 -12 1153 -12Q1182 -12 1211 -22Q1239 -32 1262 -51Q1306 -81 1322 -130Q1337 -178 1344 -256H1367Q1367 -159 1368 -100Q1369 -40 1371 0H1348Q1344 -43 1335 -54Q1325 -65 1303 -51Q1266 -25 1225 -6Q1183 14 1118 14Q1009 14 927 -29Q844 -72 799 -153Q753 -234 753 -348Q753 -460 800 -544Q847 -628 930 -675Q1012 -722 1119 -722Z M1446 -708Q1473 -707 1518 -706Q1563 -705 1608 -705Q1657 -705 1703 -706Q1748 -707 1767 -707Q1865 -707 1928 -687Q1992 -667 2024 -629Q2056 -590 2056 -533Q2056 -497 2041 -463Q2027 -428 1992 -399Q1958 -370 1897 -353Q1837 -336 1745 -336H1649V-356H1735Q1790 -356 1818 -378Q1847 -401 1858 -438Q1868 -476 1868 -522Q1868 -601 1843 -644Q1818 -688 1758 -688Q1721 -688 1711 -671Q1700 -654 1700 -602V-106Q1700 -70 1705 -52Q1711 -34 1726 -28Q1742 -22 1773 -20V0Q1745 -2 1702 -2Q1658 -3 1614 -3Q1563 -3 1518 -2Q1473 -2 1446 0V-20Q1477 -22 1493 -28Q1508 -34 1514 -52Q1519 -70 1519 -106V-602Q1519 -639 1514 -656Q1508 -674 1493 -680Q1477 -687 1446 -688ZM1645 -353Q1684 -352 1716 -349Q1748 -346 1773 -344Q1799 -341 1818 -340Q1917 -334 1965 -302Q2014 -271 2027 -209L2048 -105Q2057 -67 2067 -51Q2077 -36 2095 -37Q2106 -37 2114 -41Q2122 -46 2130 -55L2144 -42Q2115 -11 2081 1Q2047 14 2002 14Q1943 14 1905 -9Q1868 -32 1858 -94L1841 -194Q1835 -235 1825 -267Q1816 -299 1800 -318Q1784 -336 1755 -336H1647Z';
+const KCR_BOX = { x: 31, y: -722, w: 2113, h: 736 };
+
+// Gold "KCR" over a double gold kasavu stripe, on the site's dark green-black.
+const monogram = ({ radius = 14, scale = 1 } = {}) => {
+  const inner = 52 * scale;
+  const s = inner / KCR_BOX.w;
+  const textH = KCR_BOX.h * s;
+  const x = (64 - inner) / 2 - KCR_BOX.x * s;
+  const y = 30 - textH / 2 - KCR_BOX.y * s;
+  const stripeW = inner * 0.78;
+  const sx = (64 - stripeW) / 2;
+  const sy = 30 + textH / 2 + 5 * scale;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>${GOLD}</defs>
+  <rect width="64" height="64" rx="${radius}" fill="#060D0A"/>
+  <path transform="translate(${x.toFixed(2)} ${y.toFixed(2)}) scale(${s.toFixed(5)})" fill="url(#g)" d="${KCR_PATH}"/>
+  <rect x="${sx.toFixed(2)}" y="${sy.toFixed(2)}" width="${stripeW.toFixed(2)}" height="${(1.2 * scale).toFixed(2)}" fill="#E8C547"/>
+  <rect x="${sx.toFixed(2)}" y="${(sy + 2.6 * scale).toFixed(2)}" width="${stripeW.toFixed(2)}" height="${(2.6 * scale).toFixed(2)}" fill="#14A085"/>
+</svg>`;
+};
+
+async function icons() {
+  const svg = monogram();
+  await writeFile(out('app/icon.svg'), `${svg}\n`);
+  const square = Buffer.from(monogram({ radius: 0 }));
+  const maskable = Buffer.from(monogram({ radius: 0, scale: 0.72 }));
+  await sharp(square, { density: 600 }).resize(180, 180).png().toFile(out('app/apple-icon.png'));
+  await sharp(Buffer.from(svg), { density: 600 }).resize(192, 192).png().toFile(out('public/icon-192.png'));
+  await sharp(Buffer.from(svg), { density: 800 }).resize(512, 512).png().toFile(out('public/icon-512.png'));
+  await sharp(maskable, { density: 800 }).resize(512, 512).png().toFile(out('public/icon-maskable-512.png'));
+}
+
+async function shareImage() {
+  const W = 1200;
+  const H = 630;
+  const background = await sharp(out('assets/photos/interior.webp'))
+    .resize(W, H, { fit: 'cover', position: 'right' })
+    .modulate({ brightness: 0.6 })
+    .toBuffer();
+  const dish = await sharp(out('assets/photos/kizhi-parotta.webp'))
+    .resize(420, 420, { fit: 'cover' })
+    .composite([
+      {
+        input: Buffer.from('<svg width="420" height="420"><circle cx="210" cy="210" r="210" fill="#fff"/></svg>'),
+        blend: 'dest-in',
+      },
+    ])
+    .png()
+    .toBuffer();
+  const shade = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="s" x1="0" x2="1"><stop offset="0" stop-color="#060D0A" stop-opacity=".97"/><stop offset=".55" stop-color="#060D0A" stop-opacity=".82"/><stop offset="1" stop-color="#060D0A" stop-opacity=".35"/></linearGradient></defs>
+    <rect width="${W}" height="${H}" fill="url(#s)"/>
+    <circle cx="${W - 250}" cy="315" r="222" fill="none" stroke="#E8C547" stroke-opacity=".55" stroke-width="3"/>
+  </svg>`);
+  const text = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
+    <defs>${GOLD}</defs>
+    <text x="74" y="150" font-family="Satisfy" font-size="56" fill="#E8C547">Swaagatham</text>
+    <text x="66" y="282" font-family="Playfair Display" font-weight="800" font-size="138" letter-spacing="-5" fill="#F0EDE3">Kerala</text>
+    <text x="66" y="408" font-family="Playfair Display" font-weight="800" font-size="138" letter-spacing="-5" fill="#F0EDE3">Coastal</text>
+    <rect x="74" y="438" width="300" height="2" fill="#E8C547"/>
+    <rect x="74" y="445" width="300" height="5" fill="#14A085"/>
+    <text x="74" y="500" font-family="DM Sans" font-weight="500" font-size="30" fill="#F0EDE3">Authentic Kerala food · Rajinder Nagar, Delhi</text>
+    <text x="74" y="548" font-family="DM Sans" font-weight="700" font-size="22" letter-spacing="4" fill="#8FAE9F">SEAFOOD · BIRYANI · PAROTTA · APPAM</text>
+  </svg>`);
+  await sharp(background)
+    .composite([
+      { input: shade },
+      { input: dish, left: W - 460, top: 105 },
+      { input: text },
+    ])
+    .jpeg({ quality: 84, mozjpeg: true })
+    .toFile(out('app/opengraph-image.jpg'));
+  await writeFile(
+    out('app/opengraph-image.alt.txt'),
+    'Kerala Coastal Restaurant: the name over our dining room, with kizhi parotta in a banana leaf',
+  );
+}
+
+await icons();
+await shareImage();
+console.log('Brand assets written.');

@@ -1,78 +1,128 @@
 # Kerala Coastal Restaurant (KCR)
 
-Official website for Kerala Coastal Restaurant (KCR) — serving authentic Kerala cuisine in Rajinder Nagar, New Delhi.
+Website for **Kerala Coastal Restaurant (KCR)**: authentic Kerala food in
+Rajinder Nagar, New Delhi. Seafood, biryanis, parottas, appam and puttu, plus
+North Indian and Chinese favourites. Dine-in, takeaway, delivery, parties and
+catering.
+
+Built with **Next.js 16** (App Router, static pages) and **React 19**, plain CSS,
+and pre-optimised AVIF/WebP images.
 
 **Live:** [kerala-coastal-restaurant.vercel.app](https://kerala-coastal-restaurant.vercel.app)
 
-## Tech Stack
+## What's in version 2
 
-- **Framework:** Next.js 15 (App Router, React 19)
-- **Styling:** Plain CSS with custom properties
-- **Animations:** Framer Motion, CSS keyframes
-- **Fonts:** Playfair Display, DM Sans, Satisfy (via `next/font/google`)
-- **Deployment:** Vercel
+**Speed (same look, same animations)**
 
-## Features
+- Every photo is pre-optimised into responsive **AVIF + WebP** sizes
+  (`npm run images`). The photos used to be 2–4 MB PNGs (52 MB in total); a
+  phone now downloads 10–80 KB per image, only the sizes it needs. Phones get a
+  portrait crop of the storefront for the first hero slide.
+- The 3D **gallery** ("A Feast for the Eyes"), the **culinary journey**, the
+  **events carousel**, the **order buttons**, the moving borders, the breathing
+  headings, the ticker and the teal swirl are all kept — with the same scroll
+  choreography and spring settings — but no longer need an animation library
+  (about 50 KB less JavaScript), and they only run while on screen.
+- The swirling background renders at half resolution, 30 fps, starts after the
+  page has loaded and pauses in background tabs (it used to draw ~3 million
+  pixels 60 times a second on phones).
+- The culinary journey no longer hijacks the mouse wheel or touch scrolling; it
+  follows the normal page scroll.
+- Fonts are self-hosted and subset (including the ₹ sign); no middleware, no
+  runtime image optimiser, no unused libraries (gsap, lenis, framer-motion).
 
-- Responsive design (mobile-first, 375px to 2560px+)
-- Hero section with slideshow, floating food decorations, and animated greeting
-- Interactive food showcase with scroll-morph animation
-- Masonry photo gallery with hover effects
-- Events & catering section
-- Menu with categorized dishes
-- Customer reviews carousel
-- Contact section with embedded Google Maps
-- WhatsApp floating button for instant orders
-- Swiggy & Zomato order integration
-- Newsletter subscription
+Lighthouse (mobile, simulated slow 4G) before → after: **Performance 39 → 90**,
+LCP 190 s → 3.6 s, total blocking time 1,490 ms → 40 ms, page weight 49 MB →
+0.6 MB, Accessibility 87 → 100, Best practices 96 → 100. Desktop: Performance 99.
 
-## Performance & SEO
+**For guests**
 
-- Optimized images (AVIF/WebP via Next.js Image)
-- Lazy loading for below-fold content
-- Google Fonts with `display: swap`
-- Structured data (JSON-LD Restaurant schema)
-- Open Graph & Twitter Card meta tags
-- Canonical URL
-- Semantic HTML with ARIA labels
-- `robots.txt` friendly
+- **Menu** with search (understands "prawns" for *chemmeen*, "fish" for *meen*…),
+  Veg / Non-veg filter with **FSSAI-style marks**, and a printable full-menu page
+  at `/menu`. Every price on the site comes from one menu file.
+- **Order online** on Swiggy or Zomato, call or WhatsApp in one tap (sticky
+  action bar on phones).
+- **Events & catering** enquiry form that opens WhatsApp with the details filled
+  in; banana-leaf meals for groups.
+- Opening hours with live **open / closed** status in Indian time, directions,
+  and a map that only loads when asked for.
+- Reviews link to your real Google, Zomato and Tripadvisor pages.
 
-## Security
+**Behind the scenes**
 
-- Content Security Policy (CSP)
-- HTTP Strict Transport Security (HSTS)
-- X-Frame-Options: DENY
-- X-Content-Type-Options: nosniff
-- Referrer-Policy: strict-origin-when-cross-origin
-- Permissions-Policy (camera, microphone, geolocation, payment)
-- No `X-Powered-By` header
+- `Restaurant` + `Menu` structured data, sitemap, robots, web app manifest,
+  favicon / app icons and a share image for WhatsApp/Instagram links.
+- Security headers (CSP, HSTS, frame protection) in `next.config.mjs`; Next.js
+  upgraded past the image-optimiser security fix.
+- Accessible: one `h1` per page, real headings, skip link, pause control on the
+  hero slideshow, keyboard focus styles, WCAG-checked contrast, "reduce motion"
+  respected everywhere.
 
-## Getting Started
+## Editing content
+
+| What | Where |
+|---|---|
+| Phone, WhatsApp, address, **opening hours**, Swiggy/Zomato/Instagram links | `data/site.js` |
+| Menu items, prices, veg / non-veg | `data/menu.js` |
+| Guest reviews shown on the site | `data/reviews.js` (real reviews only) |
+| Photos | `assets/photos/` then `npm run images` |
+
+Dish cards and price lists (signatures, biryani, seafood) read their prices and
+veg/non-veg marks from `data/menu.js`, so a price change is made once.
+
+### Adding or replacing a photo
+
+1. Put the image in `assets/photos/` named like `appam-stew.webp` (PNG/JPG work
+   too).
+2. Add it to the `IMAGES` list in `scripts/optimize-images.mjs` (`photo`, or
+   `cutout` for transparent PNGs).
+3. Run `npm run images`: it writes the responsive files to `public/media/` and
+   updates `data/images.json`. Unchanged photos are skipped.
+4. Use it: `<Picture name="appam-stew" alt="…" sizes="…" />`.
+
+## Development
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:4174
+npm run lint
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Requires Node.js 20.9 or newer.
 
-## Build
+Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://www.yourdomain.in`) in your hosting
+provider when you move to a custom domain; canonical URLs, the sitemap and
+structured data use it.
 
-```bash
-npm run build
-npm start
+## Project structure
+
+```
+app/
+  layout.js          fonts, metadata, structured data, header/footer
+  page.js            home page sections
+  menu/page.js       full menu page (+ Menu structured data)
+  globals.css        design system and all styles
+  icon.svg, apple-icon.png, opengraph-image.jpg, manifest.js, robots.js, sitemap.js
+components/          one file per section / UI piece (Hero, Gallery, Events…)
+data/                site facts, menu, reviews, generated image manifest
+lib/                 opening hours, springs for the scroll animations
+assets/photos/       high-quality master photos (not served directly)
+assets/fonts/        self-hosted font subsets (OFL / Apache 2.0)
+scripts/             image pipeline and brand-asset generator
+public/media/        generated AVIF/WebP files (content-hashed, cached forever)
 ```
 
-## Deployment
+## Restaurant info
 
-Deployed on Vercel. Push to `main` triggers automatic deployment.
-
-## Contact
-
-- **Phone:** +91 7633019866
-- **Address:** 2/76, Ground Floor, Shankar Road, Opposite BSES Office, Rajinder Nagar, New Delhi - 110060
-- **Hours:** 11:00 AM - 11:00 PM (All days)
+- **Address:** 2/76, Ground Floor, Shankar Road, Opposite BSES Office, Rajinder
+  Nagar, New Delhi 110060
+- **Phone / WhatsApp:** +91 76330 19866
+- **Order online:** [Swiggy](https://www.swiggy.com/menu/750696?source=sharing) ·
+  [Zomato](https://zomato.onelink.me/xqzv/0lb6eb63)
 
 ## License
 
-All rights reserved. Kerala Coastal Restaurant (KCR).
+All rights reserved. This website and its content are the property of Kerala
+Coastal Restaurant (KCR). Fonts are used under the SIL Open Font License and the
+Apache License 2.0 (`assets/fonts/`); brand icons are from Simple Icons (CC0).

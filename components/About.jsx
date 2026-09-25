@@ -1,90 +1,76 @@
-'use client';
-import { MovingBorderCard } from '@/components/ui/moving-border';
-import { AnimatedText } from '@/components/ui/animated-text';
+import { Clock, Leaf, UtensilsCrossed } from 'lucide-react';
+import Picture from './Picture';
+import MovingBorderCard from './MovingBorderCard';
+import BreathingHeading from './BreathingHeading';
+import { site } from '@/data/site';
+import { formatTime } from '@/lib/hours';
 
 export default function About() {
+  const daily = site.hours.length === 1 && site.hours[0].days.length === 7;
+  const hours = `${formatTime(site.hours[0].opens)} – ${formatTime(site.hours[0].closes)}`;
+
   return (
-    <section id="about" className="about">
-      <div className="about-bg" />
+    <section id="about" className="about" aria-labelledby="about-title">
+      <div className="about-bg" aria-hidden="true" />
       <div className="about-inner">
-        <div>
-          <p className="eyebrow reveal">Our Story</p>
+        <div className="about-copy">
+          <p className="eyebrow reveal">Our story</p>
           <div className="reveal">
-            <AnimatedText
-              text="A Taste of"
-              fontSize={42}
-              minWeight={300}
-              maxWeight={800}
-              animationDuration={2.5}
-              delayMultiplier={0.18}
+            <BreathingHeading
+              id="about-title"
+              align="start"
+              lines={[
+                { text: 'A Taste of', size: 'sm', max: 800, duration: 2.5, step: 0.18 },
+                { text: 'Kerala', size: 'lg', max: 900, duration: 2, step: 0.2 },
+              ]}
+              tagline="God's Own Kitchen"
             />
-            <AnimatedText
-              text="Kerala"
-              fontSize={56}
-              minWeight={300}
-              maxWeight={900}
-              animationDuration={2}
-              delayMultiplier={0.2}
-            />
-            <em style={{ display: 'block', textAlign: 'center', fontFamily: 'var(--font-script)', fontSize: '22px', color: 'var(--coconut)', marginTop: '8px' }}>God&apos;s Own Kitchen</em>
           </div>
           <p className="lead reveal">
-            Born from the backwaters and spice-laden hills of Kerala, KCR brings
-            the authentic flavours of coastal South India to your table. Every dish
-            is a celebration of fresh seafood, coconut, curry leaves, and the
-            time-honoured recipes passed down through generations.
+            Born from the backwaters and spice-laden hills of Kerala, KCR brings the flavours of coastal South
+            India to Rajinder Nagar. Coconut, curry leaves, kodampuli and black pepper; fish curry and appam,
+            biryani and parotta; the food Keralites miss when they are away from home.
           </p>
-          <div className="about-badges reveal">
-            <div className="badge">
-              <strong className="counter" data-target="150">0</strong>
-              <span>+ Dishes</span>
-            </div>
-            <div className="badge">
-              <strong>Veg & Non-Veg</strong>
-              <span>Both Available</span>
-            </div>
-            <div className="badge">
-              <strong>Dine-In</strong>
-              <span>& Delivery</span>
-            </div>
-          </div>
+          <ul className="about-badges reveal">
+            <li className="badge">
+              <Leaf size={20} aria-hidden="true" />
+              <strong>Veg &amp; non-veg</strong>
+              <span>Clearly marked on the menu</span>
+            </li>
+            <li className="badge">
+              <UtensilsCrossed size={20} aria-hidden="true" />
+              <strong>Dine-in</strong>
+              <span>Takeaway &amp; delivery</span>
+            </li>
+            <li className="badge">
+              <Clock size={20} aria-hidden="true" />
+              <strong>{daily ? 'Open daily' : 'Opening hours'}</strong>
+              <span>{hours}</span>
+            </li>
+          </ul>
         </div>
+
         <div className="about-visual reveal">
-          <div className="about-ring svg-spin">
+          <div className="about-ring" data-play-when-visible="" aria-hidden="true">
             <svg viewBox="0 0 300 300">
               <defs>
-                <path id="ring" d="M150,150m-120,0a120,120 0 1,1 240,0a120,120 0 1,1 -240,0" />
+                <path id="about-ring-path" d="M150,150m-120,0a120,120 0 1,1 240,0a120,120 0 1,1 -240,0" />
               </defs>
               <text>
-                <textPath href="#ring">
-                  KERALA COASTAL • FRESH SEAFOOD • AUTHENTIC SPICES • TRADITIONAL RECIPES •
+                <textPath href="#about-ring-path">
+                  KERALA COASTAL • COCONUT &amp; CURRY LEAVES • AUTHENTIC SPICES • TRADITIONAL RECIPES •
                 </textPath>
               </text>
             </svg>
           </div>
-          <MovingBorderCard
-            borderRadius="16px"
-            duration={5000}
-            borderColor="var(--coconut)"
-            glowSize={70}
-          >
-            <img
-              src="/media/plate design for fecoration.png"
-              alt="KCR Platter"
-              className="about-img"
-              style={{ filter: 'drop-shadow(0 30px 40px rgba(0,0,0,.45))', maxWidth: '520px', margin: '0 auto' }}
+          <MovingBorderCard radius={18} duration={5} color="var(--coconut)" glow={80} className="about-photo">
+            <Picture
+              name="interior"
+              alt="Inside KCR: wooden tables and a hand-painted Kerala mural"
+              sizes="(max-width: 1040px) 92vw, 560px"
             />
           </MovingBorderCard>
-          <img
-            src="/media/tomato_for_decoration.png"
-            alt=""
-            className="about-decor d1"
-          />
-          <img
-            src="/media/for_decoration.png"
-            alt=""
-            className="about-decor d2"
-          />
+          <p className="about-caption">Our dining room in Rajinder Nagar</p>
         </div>
       </div>
     </section>
