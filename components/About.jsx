@@ -1,90 +1,80 @@
-'use client';
-import { MovingBorderCard } from '@/components/ui/moving-border';
-import { AnimatedText } from '@/components/ui/animated-text';
+import { ChefHat, Leaf, PartyPopper, UtensilsCrossed } from 'lucide-react';
+import Picture from './Picture';
+import { dishCount } from '@/data/menu';
+
+const roundedDishes = Math.floor(dishCount / 10) * 10;
 
 export default function About() {
   return (
-    <section id="about" className="about">
-      <div className="about-bg" />
-      <div className="about-inner">
-        <div>
-          <p className="eyebrow reveal">Our Story</p>
-          <div className="reveal">
-            <AnimatedText
-              text="A Taste of"
-              fontSize={42}
-              minWeight={300}
-              maxWeight={800}
-              animationDuration={2.5}
-              delayMultiplier={0.18}
-            />
-            <AnimatedText
-              text="Kerala"
-              fontSize={56}
-              minWeight={300}
-              maxWeight={900}
-              animationDuration={2}
-              delayMultiplier={0.2}
-            />
-            <em style={{ display: 'block', textAlign: 'center', fontFamily: 'var(--font-script)', fontSize: '22px', color: 'var(--coconut)', marginTop: '8px' }}>God&apos;s Own Kitchen</em>
-          </div>
-          <p className="lead reveal">
-            Born from the backwaters and spice-laden hills of Kerala, KCR brings
-            the authentic flavours of coastal South India to your table. Every dish
-            is a celebration of fresh seafood, coconut, curry leaves, and the
-            time-honoured recipes passed down through generations.
+    <section className="about section section--open" id="about" aria-labelledby="about-title">
+      <div className="container about-grid">
+        <div className="about-copy reveal">
+          <p className="eyebrow">Our story</p>
+          <h2 id="about-title">
+            A taste of <em>God&apos;s own country</em>
+          </h2>
+          <p className="malayalam">
+            <span lang="ml">സ്വാഗതം</span>
+            <span className="malayalam-note">“Welcome”, the Kerala way</span>
           </p>
-          <div className="about-badges reveal">
-            <div className="badge">
-              <strong className="counter" data-target="150">0</strong>
-              <span>+ Dishes</span>
-            </div>
-            <div className="badge">
-              <strong>Veg & Non-Veg</strong>
-              <span>Both Available</span>
-            </div>
-            <div className="badge">
-              <strong>Dine-In</strong>
-              <span>& Delivery</span>
-            </div>
-          </div>
+          <p className="lead">
+            Born from the backwaters and spice hills of Kerala, KCR brings the food of coastal South India to Rajinder
+            Nagar: coconut and curry leaves, kodampuli and black pepper, fish curry with appam, biryani and flaky
+            parotta.
+          </p>
+          <p className="lead">
+            It&apos;s the food Keralites miss when they are away from home, and a warm welcome for everyone else. Dine
+            in with the family, pick up on the way home, or have us deliver to your door.
+          </p>
+          <ul className="about-points">
+            <li>
+              <Leaf size={22} aria-hidden="true" />
+              <strong>Veg &amp; non-veg</strong>
+              <span>Clearly marked on every dish</span>
+            </li>
+            <li>
+              <UtensilsCrossed size={22} aria-hidden="true" />
+              <strong>{roundedDishes}+ dishes</strong>
+              <span>Kerala, North Indian &amp; Chinese</span>
+            </li>
+            <li>
+              <ChefHat size={22} aria-hidden="true" />
+              <strong>Dine-in &amp; takeaway</strong>
+              <span>Plus home delivery</span>
+            </li>
+            <li>
+              <PartyPopper size={22} aria-hidden="true" />
+              <strong>Parties &amp; catering</strong>
+              <span>Banana-leaf meals for groups</span>
+            </li>
+          </ul>
         </div>
+
         <div className="about-visual reveal">
-          <div className="about-ring svg-spin">
-            <svg viewBox="0 0 300 300">
+          <div className="about-frame">
+            <Picture
+              name="interior-mural"
+              alt="The Kerala Coastal mural in our dining room: a Kathakali dancer, palm trees, a houseboat and a Kerala feast"
+              sizes="(max-width: 740px) 80vw, (max-width: 1040px) 440px, 420px"
+            />
+          </div>
+          <div className="about-dish" aria-hidden="true">
+            <Picture name="kizhi-parotta-cutout" alt="" sizes="(max-width: 740px) 40vw, 240px" />
+          </div>
+          <div className="about-seal" aria-hidden="true">
+            <svg className="spin-ring" viewBox="0 0 300 300">
               <defs>
-                <path id="ring" d="M150,150m-120,0a120,120 0 1,1 240,0a120,120 0 1,1 -240,0" />
+                <path id="about-ring-path" d="M150,150 m-112,0 a112,112 0 1,1 224,0 a112,112 0 1,1 -224,0" />
               </defs>
+              <circle cx="150" cy="150" r="146" />
               <text>
-                <textPath href="#ring">
-                  KERALA COASTAL • FRESH SEAFOOD • AUTHENTIC SPICES • TRADITIONAL RECIPES •
+                <textPath href="#about-ring-path" textLength="700" lengthAdjust="spacing">
+                  AUTHENTIC • KERALA • KITCHEN • RAJINDER NAGAR • NEW DELHI •
                 </textPath>
               </text>
             </svg>
+            <span className="about-seal-mark">KCR</span>
           </div>
-          <MovingBorderCard
-            borderRadius="16px"
-            duration={5000}
-            borderColor="var(--coconut)"
-            glowSize={70}
-          >
-            <img
-              src="/media/plate design for fecoration.png"
-              alt="KCR Platter"
-              className="about-img"
-              style={{ filter: 'drop-shadow(0 30px 40px rgba(0,0,0,.45))', maxWidth: '520px', margin: '0 auto' }}
-            />
-          </MovingBorderCard>
-          <img
-            src="/media/tomato_for_decoration.png"
-            alt=""
-            className="about-decor d1"
-          />
-          <img
-            src="/media/for_decoration.png"
-            alt=""
-            className="about-decor d2"
-          />
         </div>
       </div>
     </section>

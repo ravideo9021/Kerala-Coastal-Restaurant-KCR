@@ -1,129 +1,142 @@
-import { Playfair_Display, DM_Sans, Satisfy } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AmbientBackground from '@/components/AmbientBackground';
 import ScrollEffects from '@/components/ScrollEffects';
-import BackgroundGradient from '@/components/BackgroundGradient';
+import FloatingActions from '@/components/FloatingActions';
+import MobileActionBar from '@/components/MobileActionBar';
+import { SITE_URL, site } from '@/data/site';
+import { openingHoursSpecification } from '@/lib/hours';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
+// Self-hosted, subsetted brand fonts (see assets/fonts/README.md): one small
+// file per family, including the rupee sign.
+const display = localFont({
+  src: '../assets/fonts/AnekMalayalam-display.woff2',
+  weight: '600 800',
   display: 'swap',
+  variable: '--font-anek',
+  fallback: ['Arial Narrow', 'Arial', 'sans-serif'],
 });
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
+const body = localFont({
+  src: '../assets/fonts/Manrope-var.woff2',
+  weight: '400 800',
   display: 'swap',
+  variable: '--font-manrope',
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
 });
 
-const satisfy = Satisfy({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-script',
+const script = localFont({
+  src: '../assets/fonts/Yellowtail-400.woff2',
+  weight: '400',
   display: 'swap',
+  variable: '--font-yellowtail',
+  fallback: ['Brush Script MT', 'cursive'],
 });
+
+const title = 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Food in Rajinder Nagar, Delhi';
 
 export const metadata = {
-  title: {
-    default: 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Cuisine in Delhi',
-    template: '%s | KCR Delhi',
-  },
-  description:
-    'Experience the authentic flavours of Kerala at KCR Delhi. Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies — from God\'s Own Country to Rajinder Nagar, New Delhi.',
-  keywords: [
-    'Kerala restaurant Delhi',
-    'KCR Delhi',
-    'Kerala Coastal Restaurant',
-    'Kerala food Delhi',
-    'best seafood Delhi',
-    'Kerala biryani Delhi',
-    'sadya Delhi',
-    'South Indian restaurant Rajinder Nagar',
-    'coastal cuisine Delhi',
-    'appam Delhi',
-    'fish curry Delhi',
-    'Kerala restaurant near me',
-    'authentic Kerala food',
-    'Malabar cuisine',
-    'Kerala parotta',
-  ],
-  metadataBase: new URL('https://kerala-coastal-restaurant.vercel.app'),
+  metadataBase: new URL(SITE_URL),
+  title: { default: title, template: '%s | KCR Delhi' },
+  description: site.description,
+  applicationName: site.fullName,
   alternates: { canonical: '/' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+  },
   openGraph: {
-    title: 'Kerala Coastal Restaurant (KCR) | Authentic Kerala Cuisine',
-    description:
-      'Fresh seafood, traditional sadyas, Kerala biryanis and coastal delicacies in the heart of Delhi.',
-    url: 'https://kerala-coastal-restaurant.vercel.app',
-    siteName: 'Kerala Coastal Restaurant',
-    locale: 'en_IN',
     type: 'website',
-    images: [{ url: '/media/restorent_front.png', width: 1200, height: 630, alt: 'Kerala Coastal Restaurant' }],
+    siteName: site.fullName,
+    title: 'Kerala Coastal Restaurant (KCR): authentic Kerala food in Delhi',
+    description:
+      'Kerala fish curry, meen pollichathu, Thalassery biryani, kizhi parotta and appam in Rajinder Nagar, New Delhi. Dine-in, takeaway, delivery and catering.',
+    locale: 'en_IN',
+    url: '/',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Kerala Coastal Restaurant (KCR)',
-    description: 'Authentic Kerala Cuisine in Delhi — Fresh seafood, sadyas & biryanis',
-    images: ['/media/restorent_front.png'],
+    description: 'Authentic Kerala food in Rajinder Nagar, New Delhi: seafood, biryani, parotta and more.',
   },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
-  verification: {},
   category: 'restaurant',
 };
 
-export default function RootLayout({ children }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Restaurant',
-    name: 'Kerala Coastal Restaurant (KCR)',
-    servesCuisine: ['Kerala', 'South Indian', 'Seafood', 'Coastal'],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '2/76, Ground Floor, Shankar Road, Opposite BSES Office',
-      addressLocality: 'Rajinder Nagar, New Delhi',
-      addressRegion: 'Delhi',
-      postalCode: '110060',
-      addressCountry: 'IN',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 28.6364417,
-      longitude: 77.1841909,
-    },
-    url: 'https://kerala-coastal-restaurant.vercel.app',
-    telephone: '+917633019866',
-    priceRange: '₹₹',
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-          'Sunday',
-        ],
-        opens: '11:00',
-        closes: '23:00',
-      },
-    ],
-  };
+export const viewport = {
+  themeColor: '#060D0A',
+  colorScheme: 'dark',
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Restaurant',
+      '@id': `${SITE_URL}/#restaurant`,
+      name: site.fullName,
+      alternateName: [site.name, site.shortName],
+      description: site.description,
+      url: SITE_URL,
+      image: [`${SITE_URL}/opengraph-image.jpg`],
+      logo: `${SITE_URL}/icon.svg`,
+      telephone: site.phone.e164,
+      priceRange: site.priceRange,
+      servesCuisine: site.cuisines,
+      acceptsReservations: true,
+      menu: `${SITE_URL}/menu`,
+      hasMap: site.maps.place,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: `${site.address.street}, ${site.address.landmark}`,
+        addressLocality: `${site.address.locality}, ${site.address.city}`,
+        addressRegion: site.address.region,
+        postalCode: site.address.postalCode,
+        addressCountry: site.address.country,
+      },
+      geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
+      openingHoursSpecification: openingHoursSpecification(),
+      sameAs: [site.social.instagram, site.order.swiggy, site.order.zomato],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: site.fullName,
+      publisher: { '@id': `${SITE_URL}/#restaurant` },
+    },
+  ],
+};
+
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${satisfy.variable}`}>
-      <head>
+    <html
+      lang="en-IN"
+      data-scroll-behavior="smooth"
+      className={`${display.variable} ${body.variable} ${script.variable}`}
+    >
+      <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          // JSON-LD must be inline; the content is static and escapes "<".
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
         />
-      </head>
-      <body>
-        <BackgroundGradient />
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <AmbientBackground />
         <Header />
-        <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
+        <FloatingActions />
+        <MobileActionBar />
         <ScrollEffects />
       </body>
     </html>
